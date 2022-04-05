@@ -22,26 +22,26 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/categories/%E6%97%A5%E5%B8%B8/index.html">
+<meta property="og:url" content="http://example.com/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/categories/%E6%97%A5%E5%B8%B8/">
+<link rel="canonical" href="http://example.com/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
+    isHome : true,
     isPost : false,
     lang   : 'en'
   };
 </script>
 
-  <title>Category: 日常 | Hexo</title>
+  <title>Hexo</title>
   
 
 
@@ -144,92 +144,88 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/win10%E7%B3%BB%E7%BB%9F%E7%94%A8hexo-GitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/">
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">日常
-          <small>Category</small>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/05/win10%E7%B3%BB%E7%BB%9F%E7%94%A8hexo-GitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/" class="post-title-link" itemprop="url">win10系统用hexo+GitHub搭建博客遇到的坑</a>
         </h2>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-05 11:13:46 / Modified: 14:36:57" itemprop="dateCreated datePublished" datetime="2022-04-05T11:13:46+08:00">2022-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+          <p>Welcome to unique_Hang’s blog.</p>
+<blockquote>
+<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
+</blockquote>
+<h2 id="1、repo配置报错"><a href="#1、repo配置报错" class="headerlink" title="1、repo配置报错"></a>1、repo配置报错</h2><p>网上很多搭建博客经验分享帖中repo配置写入的是HTTPS(形如:<a target="_blank" rel="noopener" href="https://github.com/">https://github.com/</a><br>XXXX&#x2F;XXXX.github.io.git格式)。win10系统运行时会报错。</p>
+<p><strong>解决方法：</strong><br>win10系统repo需要写入SSH (形如:<br><a href="mailto:git@github.com">git@github.com</a>:仓库名&#x2F;用户名.github.io.git格式)。<br>例如我的仓库名&#x2F;用户名为<br><img src="https://i.loli.net/2020/04/07/rI5tCDHuxcPZRVG.png" alt="8.png"><br>我的repo配置:<br>repo: <a href="mailto:git@github.com">git@github.com</a>:day-day-up-<br>hang&#x2F;unique_Hang.github.io.git</p>
+<h2 id="2、打开你的博客网址后显示404"><a href="#2、打开你的博客网址后显示404" class="headerlink" title="2、打开你的博客网址后显示404"></a>2、打开你的博客网址后显示404</h2><p><img src="https://i.loli.net/2020/04/07/1nZEHDbINT9Kujg.png" alt="2.png"><br>原因:你们没有选择自己的主题。<br> <strong>解决方法：</strong><br>进入github你的仓库<br><img src="https://i.loli.net/2020/04/07/PAujFrcoMkvRGIy.png" alt="3.png"><br>点击进入Settings后页面往下拉,看到GitHub Pages (你们应该没有绿色背景这行字)<br><img src="https://i.loli.net/2020/04/07/GOAsormgqDFTn3y.png" alt="4.png"><br>点击Choose a theme ,里面随便点一个主题后,点击select theme后出现<br>绿色背景这行字就表示成功。<br><img src="https://i.loli.net/2020/04/07/uBplk7bqeM1tXQz.png" alt="5.png"></p>
+<h2 id="3、部署后不能显示主题样式"><a href="#3、部署后不能显示主题样式" class="headerlink" title="3、部署后不能显示主题样式"></a>3、部署后不能显示主题样式</h2><p>在本地看我的博客没有问题,如下图 :<br><img src="https://i.loli.net/2020/04/07/YXaupRdLNEP1zHC.png" alt="6.png"><br>但是部署到github上之后,无法显示主题,如下图 :<br><img src="https://i.loli.net/2020/04/07/WQaCruUEBMeqDdp.png" alt="7.png"><br> <strong>解决方法：</strong><br>更改一下_config.ymI文件的root属性。root后写你的用户名<br><img src="https://i.loli.net/2020/04/07/rI5tCDHuxcPZRVG.png" alt="8.png"><br>比如我的root: &#x2F;unique_Hang.github.io&#x2F;<br>设置完后删除目录下的 .deploy_git 那是生成的文件<br>在然后重新上传项目<br>hexo clean<br>hexo generate<br>hexo deploy<br>即可</p>
+
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-05T11:53:19+08:00"
-              content="2022-04-05">
-          04-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/05/%E3%80%90python%E5%AD%A6%E4%B9%A0%E3%80%91%E5%A6%82%E4%BD%95%E7%94%A8%E6%89%8B%E6%9C%BA%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" itemprop="url">
-            <span itemprop="name">【python学习】如何用手机远程控制电脑</span>
-          </a>
-      </div>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-05T11:49:24+08:00"
-              content="2022-04-05">
-          04-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/05/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/" itemprop="url">
-            <span itemprop="name">常用网站分享</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-04-05T11:13:46+08:00"
-              content="2022-04-05">
-          04-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/04/05/win10%E7%B3%BB%E7%BB%9F%E7%94%A8hexo-GitHub%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91/" itemprop="url">
-            <span itemprop="name">win10系统用hexo+GitHub搭建博客遇到的坑</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-    </div>
-  </div>
   
   
   
 
+
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 

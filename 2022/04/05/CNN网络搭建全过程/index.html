@@ -20,28 +20,61 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="Welcome to unique_Hang’s blog.  鲁迅说过：看unique_Hang博客的人颜值都很高！ 作者邮箱：unique_hang@qq.com喜欢的小伙伴可以关注我的b站账号(https:&#x2F;&#x2F;space.bilibili.com&#x2F;290100464)    论文必备：画图1#画图：https:&#x2F;&#x2F;cbovar.github.io&#x2F;ConvNetDraw&#x2F;  卷积是什么？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CNN网络搭建全过程">
+<meta property="og:url" content="http://example.com/2022/04/05/CNN%E7%BD%91%E7%BB%9C%E6%90%AD%E5%BB%BA%E5%85%A8%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Welcome to unique_Hang’s blog.  鲁迅说过：看unique_Hang博客的人颜值都很高！ 作者邮箱：unique_hang@qq.com喜欢的小伙伴可以关注我的b站账号(https:&#x2F;&#x2F;space.bilibili.com&#x2F;290100464)    论文必备：画图1#画图：https:&#x2F;&#x2F;cbovar.github.io&#x2F;ConvNetDraw&#x2F;  卷积是什么？">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gn39tqzjb0j30yg0cftl2.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gn2kspj8xlj31720r84qp.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw1024/007BSstUgy1gn39e1vfi6j30yr09r46v.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw690/007BSstUgy1gn27y28ievj30rw052abz.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw690/007BSstUgy1gn27zvw9jrj309j0190t1.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/large/007BSstUgy1gn286mljjfj31430elqh9.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw690/007BSstUgy1gn28djs0k4j30c9011t90.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/large/007BSstUgy1gn28n5hotbj31hc0u0azi.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/large/007BSstUgy1gn29ulti7xj31hc0u0khv.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/large/007BSstUgy1gn2a4zxtoyj31hc0u0b12.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/large/007BSstUgy1gn2a9ztyfpj31hc0u01kx.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw690/007BSstUgy1gn2ab3t2hij30qm0mogq3.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw690/007BSstUgy1gna4st5x9ij3057025t8i.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw1024/007BSstUgy1gn3ad3hfp9j31a70m913n.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gn3dkddg40j31hc0ock3s.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gn3o0othswj31hc0u01hf.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw1024/007BSstUgy1gn3obmzy8fj31hc0u0e81.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw1024/007BSstUgy1gn3ojszn3yj31hc0u0to8.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gn3oqigxyhj31gd0rb1fj.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw1024/007BSstUgy1gn3os7ve8lj31hc0s5av2.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw1024/007BSstUgy1gn3p387l8wj31hc0u04hs.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw1024/007BSstUgy1gn3p6slbzjj31hc0u04qp.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw1024/007BSstUgy1gn3qwpz1qfj316b0pee48.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw1024/007BSstUgy1gna7asdhnhj30kv04uaa6.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gna7bznfyij30ld06haag.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw1024/007BSstUgy1gna7eg7bk9j30mz011t8m.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gna7hgtzm1j30cy0awq3d.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw1024/007BSstUgy1gnaf37g68oj30q10guac2.jpg">
+<meta property="article:published_time" content="2022-04-05T06:47:27.776Z">
+<meta property="article:modified_time" content="2022-04-05T06:48:24.321Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gn39tqzjb0j30yg0cftl2.jpg">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/04/05/CNN%E7%BD%91%E7%BB%9C%E6%90%AD%E5%BB%BA%E5%85%A8%E8%BF%87%E7%A8%8B/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Hexo</title>
+  <title>CNN网络搭建全过程 | Hexo</title>
   
 
 
@@ -144,626 +177,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/yolov5%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/yolov5%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">yolov5使用</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-05 14:52:53 / Modified: 14:53:14" itemprop="dateCreated datePublished" datetime="2022-04-05T14:52:53+08:00">2022-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<p>1.安装环境。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda create -n yolov5 python=3.8 pytorch torchvision cudatoolkit=10.2 -c pytorch </span><br><span class="line"></span><br><span class="line">pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
-
-<p>2.制作数据集</p>
-<ul>
-<li>使用labelImg打标xml文件</li>
-<li>数据集转化，运行  格式转换.py  并设置标签种类和训练集验证集种类，生成images和labels文件夹</li>
-<li>在data文件夹中更改mydata.yaml中的路径，类别和类别数</li>
-<li>只修改models文件夹中改mydata.yaml文件中的类别数</li>
-</ul>
-<p>3.训练</p>
-<ul>
-<li>修改train.py文件，主要修改前三个</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(&#x27;--weights&#x27;, type=str, default=ROOT / &#x27;yolov5s.pt&#x27;, help=&#x27;initial weights path&#x27;)</span><br><span class="line">parser.add_argument(&#x27;--cfg&#x27;, type=str, default=&#x27;models/mydata.yaml&#x27;, help=&#x27;model.yaml path&#x27;)</span><br><span class="line">parser.add_argument(&#x27;--data&#x27;, type=str, default=ROOT / &#x27;data/mydata.yaml&#x27;, help=&#x27;dataset.yaml path&#x27;)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>设置线程数为0（最小）</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(&#x27;--workers&#x27;, type=int, default=0, help=&#x27;maximum number of dataloader workers&#x27;)#线程数</span><br></pre></td></tr></table></figure>
-
-
-
-<p>训练完权重会保存在runs&#x2F;train&#x2F;exp&#x2F;weights中。</p>
-<p>4.验证</p>
-<p>找到detect.py’文件，更改权重地址和检测文件地址</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(&#x27;--weights&#x27;, nargs=&#x27;+&#x27;, type=str, default=ROOT / &#x27;yolov5s.pt&#x27;, help=&#x27;model path(s)&#x27;)</span><br><span class="line">parser.add_argument(&#x27;--source&#x27;, type=str, default=ROOT / &#x27;data/images&#x27;, help=&#x27;file/dir/URL/glob, 0 for webcam&#x27;)#检测图片/视频</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/yolov3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/yolov3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">yolov3使用方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-05 14:52:24 / Modified: 14:52:48" itemprop="dateCreated datePublished" datetime="2022-04-05T14:52:24+08:00">2022-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<h1 id="1-用labelImg标注图片（文件夹中的exe文件）"><a href="#1-用labelImg标注图片（文件夹中的exe文件）" class="headerlink" title="1.用labelImg标注图片（文件夹中的exe文件）"></a>1.用labelImg标注图片（文件夹中的exe文件）</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">注意标注文件夹不能有中文</span><br><span class="line"></span><br><span class="line">pip install PyQt5</span><br><span class="line">pip install pyqt5-tools</span><br><span class="line">pip install lxml</span><br><span class="line">pip install labelImg</span><br><span class="line"></span><br><span class="line">终端输入labelImg打开</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>点击Open Dir打开数据集</li>
-<li>点击Create RectBox打标签（快捷键：W）</li>
-<li>保存（选择一个文件夹，得到xml后缀文件）</li>
-<li>下一张，以此类推。（快捷键：A上一张 D下一张）</li>
-<li>标记完后把xml文件全部放在.\VOCdevkit_fire\VOC2012\Annotations文件夹下</li>
-</ol>
-<h1 id="2-生成训练集-测试集"><a href="#2-生成训练集-测试集" class="headerlink" title="2.生成训练集\测试集"></a>2.生成训练集\测试集</h1><ol>
-<li><p>运行“获取文件名字.py”，得到my_train.txt和my_val.txt。<strong>1.注意改路径，2.若文档最后有空行会报错！！</strong></p>
-</li>
-<li><p>在data文件夹中建立标签文件：xxx.names，里面存放图片标签。</p>
-</li>
-<li><p>检测tools&#x2F;voc2012.py里路径和文件名是否需要修改</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">image_list = <span class="built_in">open</span>(os.path.join(</span><br><span class="line">        FLAGS.data_dir, <span class="string">&#x27;ImageSets&#x27;</span>, <span class="string">&#x27;Main&#x27;</span>, <span class="string">&#x27;my_%s.txt&#x27;</span> % FLAGS.split)).read().splitlines()</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>打开anaconda，激活yolov3-tf2-cpu，进入根目录，运行程序。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(E:\Program Files\Anaconda3) C:\Users\Administrator&gt;activate yolov3-tf2-cpu</span><br><span class="line"></span><br><span class="line">(yolov3-tf2-cpu) C:\Users\Administrator&gt;e:</span><br><span class="line"></span><br><span class="line">(yolov3-tf2-cpu) E:\&gt;cd E:\PyCharm\work\yolo_tf2.1</span><br><span class="line"></span><br><span class="line">(yolov3-tf2-cpu) E:\PyCharm\work\yolo_tf2.1&gt;</span><br><span class="line"></span><br><span class="line">--------------运行下面--------------------</span><br><span class="line">#生产训练集</span><br><span class="line">python tools/voc2012.py --data_dir ./VOCdevkit_fire/VOC2012 --split train --output_file ./data/voc2012_train.tfrecord --classes=./data/fire_voc2012.names</span><br><span class="line">#生产测试集</span><br><span class="line">python tools/voc2012.py --data_dir ./VOCdevkit_fire/VOC2012 --split val --output_file ./data/voc2012_val.tfrecord --classes=./data/fire_voc2012.names</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="3-进行迁移训练"><a href="#3-进行迁移训练" class="headerlink" title="3.进行迁移训练"></a>3.进行迁移训练</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train.py --dataset ./data/voc2012_train.tfrecord --val_dataset ./data/voc2012_val.tfrecord --classes ./data/fire_voc2012.names --num_classes 1  --mode fit --transfer darknet --batch_size 4 --epochs 20 --weights ./checkpoints/yolov3.tf --weights_num_classes 80 </span><br></pre></td></tr></table></figure>
-
-<p>需要修改的：–dataset训练集，–val_dataset测试集，–classes标签文件，–num_classes标签种类</p>
-<p>每一个epoch会在checkpoints文件夹保存一次模型参数（yolov3_train_xx.tf）</p>
-<h1 id="4-进行模型测试"><a href="#4-进行模型测试" class="headerlink" title="4.进行模型测试"></a>4.进行模型测试</h1><ul>
-<li>图片测试</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --classes ./data/fire_voc2012.names --num_classes 1 --weights ./checkpoints/yolov3_train_20.tf --image ./fire.jpg --yolo_score_threshold 0.3</span><br></pre></td></tr></table></figure>
-
-<p>需要修改的：–classes 标签文件 –num_classes 标签个数 –weights 权重文件  –image 测试图片 –yolo_score_threshold 分割阈值</p>
-<p>得到图片output.jpg</p>
-<p>查全率测试：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查看修改：weights，num_classes，判断（if nums[0] &gt; 1 or 0）</span><br><span class="line"></span><br><span class="line">python detect_all.py --yolo_score_threshold 0.3</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>视频测试</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect_video.py --classes ./data/fire_voc2012.names --num_classes 1 --weights ./checkpoints/yolov3_train_20.tf --video fire.mp4 --output ./output.avi --yolo_score_threshold 0.3</span><br></pre></td></tr></table></figure>
-
-<p>得到视频output.jpg</p>
-<ul>
-<li>摄像头测试</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect_video.py --classes ./data/fire_voc2012.names --num_classes 1 --weights ./checkpoints/yolov3_train_20.tf --video 0 --yolo_score_threshold 0.3</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="5-常见错误"><a href="#5-常见错误" class="headerlink" title="5.常见错误"></a>5.常见错误</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">data\xxx.names中标签错误</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;tools/voc2012.py&quot;, line 111, in &lt;module&gt;</span><br><span class="line">    app.run(main)</span><br><span class="line">  File &quot;E:\anaconda\envs\tf2\lib\site-packages\absl\app.py&quot;, line 303, in run</span><br><span class="line">    _run_main(main, args)</span><br><span class="line">  File &quot;E:\anaconda\envs\tf2\lib\site-packages\absl\app.py&quot;, line 251, in _run_main</span><br><span class="line">    sys.exit(main(argv))</span><br><span class="line">  File &quot;tools/voc2012.py&quot;, line 104, in main</span><br><span class="line">    tf_example = build_example(annotation, class_map)</span><br><span class="line">  File &quot;tools/voc2012.py&quot;, line 47, in build_example</span><br><span class="line">    classes.append(class_map[obj[&#x27;name&#x27;]])</span><br><span class="line">KeyError: &#x27;collision&#x27;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h1 id="6-进阶——数据增强"><a href="#6-进阶——数据增强" class="headerlink" title="6.进阶——数据增强"></a>6.进阶——数据增强</h1><p>.\tools\数据增强    文件夹中把需要增强的图片和xml文件分别放入JPEGImages和Annotations文件夹中。</p>
-<p>分别运行</p>
-<p>增强.py    –&gt; 修改路径</p>
-<p>即可</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/ylolv%E5%90%88%E9%9B%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/ylolv%E5%90%88%E9%9B%86/" class="post-title-link" itemprop="url">ylolv合集</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-05 14:51:52 / Modified: 14:52:20" itemprop="dateCreated datePublished" datetime="2022-04-05T14:51:52+08:00">2022-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<p><img src="https://wx3.sinaimg.cn/mw1024/007BSstUgy1gojk3cbzi3j31hc0u07hx.jpg"></p>
-<p>参考资料：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ez4y1X7g2">https://www.bilibili.com/video/BV1ez4y1X7g2</a></p>
-<h1 id="yolov1"><a href="#yolov1" class="headerlink" title="yolov1"></a>yolov1</h1><p><img src="https://wx2.sinaimg.cn/mw690/007BSstUgy1goagu0gd59j309y0b943k.jpg"></p>
-<p><strong>论文思想：</strong></p>
-<ol>
-<li><p>将一幅图像分成SxS个网格(grid cell)，如果某个目标（object）的中心落在这个网格中，则这个网格就负责预测这个目标（object）。</p>
-</li>
-<li><p>每个网格要预测B（一般B&#x3D;2）个bounding box，每个bounding box除了要预测位置之外，还要附带预测一个confidence值。每个网格还要预测c个类别的分数。每一个网格最终得到的预测值是2*5+c</p>
-<p>注：confidence是Pr(Object)*IOU，有目标Pr(Object)&#x3D;1，无目标Pr(Object)&#x3D;0，IOU是预测的bounding box和真实的bounding box的交并比。2是两个bounding box，5是每个bounding box反馈五个值：x、y、w、h、confidence，c是c种类别</p>
-</li>
-</ol>
-<p><strong>损失函数：</strong></p>
-<p><img src="https://wx1.sinaimg.cn/mw690/007BSstUgy1goahw555vcj31350j542z.jpg"></p>
-<p><strong>存在的问题：</strong></p>
-<p>对小物体多个目标的预测不准确。</p>
-<h1 id="yolov2"><a href="#yolov2" class="headerlink" title="yolov2"></a>yolov2</h1><p>七个改进：</p>
-<ol>
-<li>Batch Normalization.（使用BN层，取消了dropout层）</li>
-<li>High Resolution Classifier，更高分辨率的分类器</li>
-<li>Convolutional With Anchor Boxes，基于Anchor的目标检测框进行检测</li>
-<li>Dimension Clusters，使用聚类算法提取anchor boxes的宽高</li>
-<li>Direct location prediction（目标位置预测），对中心坐标偏移量进行限制，限制到0~1之间，这样可以让每个anchor(prior)去负责预测目标中心落在某个grid cell区域内的目标。</li>
-<li>Fine-Grained Features，引入一种称为passthrough层的方法在特征图中保留一些细节信息</li>
-<li>Multi-Scale Training（多尺寸训练）没有全连接层，只有卷积层和池化层，因此模型可以接受任意尺寸的输入。因为下采样率为32，所以选择的尺寸都是32的倍数，具体的范围为<img src="https://www.zhihu.com/equation?tex=%5C%7B320,+352,...,+608%5C%7D" alt="[公式]"></li>
-<li>Darknet-19包含19个卷积层、5个最大值池化层（max pooling layers ）</li>
-</ol>
-<h1 id="yolov3"><a href="#yolov3" class="headerlink" title="yolov3"></a>yolov3</h1><ol>
-<li><p>每个cell预测3个boxes（B&#x3D;3），每个box给出85个参数，如下：<img src="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gomqprplvij30qu0b8wja.jpg"></p>
-<p>其中N*N是图片分割出的cell数量。</p>
-</li>
-<li><p>网络结构：</p>
-<p><img src="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gomuz5y1ofj30x40pawlx.jpg"></p>
-<p>Up Sampling是上采样层，高和宽会扩大到原来的两倍。</p>
-</li>
-<li><p>损失的计算：<img src="https://wx1.sinaimg.cn/mw1024/007BSstUgy1gomvcn79afj315h06040u.jpg"></p>
-<p>置信度损失：<img src="https://wx4.sinaimg.cn/mw1024/007BSstUgy1gomvg767vmj313w0gxjwp.jpg"></p>
-<p>类别损失：</p>
-<p><img src="https://wx1.sinaimg.cn/mw1024/007BSstUgy1gomvke8x9vj31450ifwkf.jpg"></p>
-<p>定位损失：<img src="https://wx1.sinaimg.cn/mw1024/007BSstUgy1gomvt82trjj30h00g9myn.jpg"></p>
-</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/Unet%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/Unet%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2/" class="post-title-link" itemprop="url">Unet语义分割</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-05 14:51:22 / Modified: 14:51:41" itemprop="dateCreated datePublished" datetime="2022-04-05T14:51:22+08:00">2022-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<p>原文网址：<a target="_blank" rel="noopener" href="http://www.arxiv.org/pdf/1505.04597.pdf">http://www.arxiv.org/pdf/1505.04597.pdf</a></p>
-<p>Unet可以分为三个部分，如下图所示：</p>
-<p>第一部分是<strong>主干特征提取部分</strong>，我们可以利用主干部分获得一个又一个的<strong>特征层</strong>，Unet的主干特征提取部分与VGG相似，为卷积和最大池化的堆叠。<strong>利用主干特征提取部分我们可以获得五个初步有效特征层</strong>，在第二步中，我们会利用这五个有效特征层可以进行特征融合。</p>
-<p>第二部分是<strong>加强特征提取部分</strong>，我们可以利用主干部分获取到的五个初步有效特征层进行上采样，并且进行特征融合，获得一个最终的，融合了所有特征的有效特征层。</p>
-<p>第三部分是<strong>预测部分</strong>，我们会利用最终获得的最后一个有效特征层对每一个特征点进行分类，相当于对每一个像素点进行分类。</p>
-<p><img src="https://wx1.sinaimg.cn/mw1024/007BSstUly1gosnf204c5j310f0n7tgz.jpg"></p>
-<p>原论文的一些细节：</p>
-<ul>
-<li><p>原文：The cropping is necessary due to the loss of border pixels in every convolution.</p>
-<p>得到信息：<strong>得到图片的大小略小于原图</strong>，从图中可以看到输入图片大小（572 x 572），输出图片大小（388 x 388）</p>
-</li>
-<li><p>原文：To minimize the overhead and make maximum use of the GPU memory, we favor large  input tiles over a large batch size and hence reduce the batch to a single  image.</p>
-<p>得到信息：<strong>batch  &#x3D; 1</strong></p>
-</li>
-<li><p>原文：Accordingly we use a high momentum (0.99) such that a large number of the  previously seen training samples determine the update in the current  optimization step.</p>
-<p>得到信息：<strong>动量v&#x3D;0.99</strong></p>
-</li>
-<li><p>原文：</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/Unet%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/Unet%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">Unet使用方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-05 14:49:53 / Modified: 14:51:10" itemprop="dateCreated datePublished" datetime="2022-04-05T14:49:53+08:00">2022-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<h1 id="自己训练数据集步骤"><a href="#自己训练数据集步骤" class="headerlink" title="自己训练数据集步骤"></a>自己训练数据集步骤</h1><ol>
-<li><p>准备数据集图片，放入.\datasets\before文件夹，打开labelme（版本：3.16.7）进行标注。</p>
-</li>
-<li><p>打开json_to_dataset.py，修改classes &#x3D; [“<em>background</em>“,”cat”,”dog”]，第一个背景参数不变，把其他的改为需要分的类。运行该脚本，会生成.&#x2F;datasets&#x2F;JPEGImages文件夹存放原始图片，在datasets&#x2F;SegmentationClass文件夹存放掩图。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">import argparse</span><br><span class="line">import base64</span><br><span class="line">import json</span><br><span class="line">import os</span><br><span class="line">import os.path as osp</span><br><span class="line">import warnings</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">import PIL.Image</span><br><span class="line">import yaml</span><br><span class="line">from labelme import utils</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def mkdir(path):</span><br><span class="line">    folder = os.path.exists(path)</span><br><span class="line"></span><br><span class="line">    if not folder:  # 判断是否存在文件夹如果不存在则创建为文件夹</span><br><span class="line">        os.makedirs(path)  # makedirs 创建文件时如果路径不存在会创建这个路径</span><br><span class="line">        print(&#x27;环境配置完毕！&#x27;)</span><br><span class="line">    else:</span><br><span class="line">        print(&#x27;环境检测完毕！&#x27;)</span><br><span class="line"></span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">我使用的labelme版本是3.16.7，建议使用该版本的labelme，有些版本的labelme会发生错误</span><br><span class="line">此处生成的标签图是8位彩色图，每个像素点的值就是这个像素点所属的种类</span><br><span class="line">&#x27;&#x27;&#x27;</span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    mkdir(&quot;datasets/JPEGImages&quot;)</span><br><span class="line">    mkdir(&quot;datasets/SegmentationClass&quot;)</span><br><span class="line">    jpgs_path = &quot;datasets/JPEGImages&quot;</span><br><span class="line">    pngs_path = &quot;datasets/SegmentationClass&quot;</span><br><span class="line">    #classes = [&quot;_background_&quot;,&quot;aeroplane&quot;, &quot;bicycle&quot;, &quot;bird&quot;, &quot;boat&quot;, &quot;bottle&quot;, &quot;bus&quot;, &quot;car&quot;, &quot;cat&quot;, &quot;chair&quot;, &quot;cow&quot;, &quot;diningtable&quot;, &quot;dog&quot;, &quot;horse&quot;, &quot;motorbike&quot;, &quot;person&quot;, &quot;pottedplant&quot;, &quot;sheep&quot;, &quot;sofa&quot;, &quot;train&quot;, &quot;tvmonitor&quot;]</span><br><span class="line">    # classes = [&quot;_background_&quot;,&quot;cat&quot;,&quot;dog&quot;]</span><br><span class="line">    classes = [&quot;_background_&quot;, &quot;1&quot;]</span><br><span class="line">    </span><br><span class="line">    count = os.listdir(&quot;./datasets/before/&quot;) </span><br><span class="line">    for i in range(0, len(count)):</span><br><span class="line">        path = os.path.join(&quot;./datasets/before&quot;, count[i])</span><br><span class="line"></span><br><span class="line">        if os.path.isfile(path) and path.endswith(&#x27;json&#x27;):</span><br><span class="line">            data = json.load(open(path))</span><br><span class="line">            </span><br><span class="line">            if data[&#x27;imageData&#x27;]:</span><br><span class="line">                imageData = data[&#x27;imageData&#x27;]</span><br><span class="line">            else:</span><br><span class="line">                imagePath = os.path.join(os.path.dirname(path), data[&#x27;imagePath&#x27;])</span><br><span class="line">                with open(imagePath, &#x27;rb&#x27;) as f:</span><br><span class="line">                    imageData = f.read()</span><br><span class="line">                    imageData = base64.b64encode(imageData).decode(&#x27;utf-8&#x27;)</span><br><span class="line"></span><br><span class="line">            img = utils.img_b64_to_arr(imageData)</span><br><span class="line">            label_name_to_value = &#123;&#x27;_background_&#x27;: 0&#125;</span><br><span class="line">            for shape in data[&#x27;shapes&#x27;]:</span><br><span class="line">                label_name = shape[&#x27;label&#x27;]</span><br><span class="line">                if label_name in label_name_to_value:</span><br><span class="line">                    label_value = label_name_to_value[label_name]</span><br><span class="line">                else:</span><br><span class="line">                    label_value = len(label_name_to_value)</span><br><span class="line">                    label_name_to_value[label_name] = label_value</span><br><span class="line">            </span><br><span class="line">            # label_values must be dense</span><br><span class="line">            label_values, label_names = [], []</span><br><span class="line">            for ln, lv in sorted(label_name_to_value.items(), key=lambda x: x[1]):</span><br><span class="line">                label_values.append(lv)</span><br><span class="line">                label_names.append(ln)</span><br><span class="line">            assert label_values == list(range(len(label_values)))</span><br><span class="line">            </span><br><span class="line">            lbl = utils.shapes_to_label(img.shape, data[&#x27;shapes&#x27;], label_name_to_value)</span><br><span class="line">            </span><br><span class="line">                </span><br><span class="line">            PIL.Image.fromarray(img).save(osp.join(jpgs_path, count[i].split(&quot;.&quot;)[0]+&#x27;.jpg&#x27;))</span><br><span class="line"></span><br><span class="line">            new = np.zeros([np.shape(img)[0],np.shape(img)[1]])</span><br><span class="line">            for name in label_names:</span><br><span class="line">                index_json = label_names.index(name)</span><br><span class="line">                index_all = classes.index(name)</span><br><span class="line">                new = new + index_all*(np.array(lbl) == index_json)</span><br><span class="line"></span><br><span class="line">            utils.lblsave(osp.join(pngs_path, count[i].split(&quot;.&quot;)[0]+&#x27;.png&#x27;), new)</span><br><span class="line">            print(&#x27;Saved &#x27; + count[i].split(&quot;.&quot;)[0] + &#x27;.jpg and &#x27; + count[i].split(&quot;.&quot;)[0] + &#x27;.png&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>把JPEGImages文件夹和SegmentationClass文件夹复制到VOCdevkit&#x2F;VOC2007中，运行voc2unet.py，生成txt文件（存放在.\VOCdevkit\VOC2007\ImageSets\Segmentation）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">import os</span><br><span class="line">import random </span><br><span class="line">random.seed(0)</span><br><span class="line"> </span><br><span class="line">segfilepath=r&#x27;./VOC2007/SegmentationClass&#x27;</span><br><span class="line">saveBasePath=r&quot;./VOC2007/ImageSets/Segmentation/&quot;</span><br><span class="line"> </span><br><span class="line">#----------------------------------------------------------------------#</span><br><span class="line">#   想要增加测试集修改trainval_percent</span><br><span class="line">#   修改train_percent用于改变验证集的比例</span><br><span class="line">#----------------------------------------------------------------------#</span><br><span class="line">trainval_percent=1</span><br><span class="line">train_percent=0.9</span><br><span class="line"></span><br><span class="line">temp_seg = os.listdir(segfilepath)</span><br><span class="line">total_seg = []</span><br><span class="line">for seg in temp_seg:</span><br><span class="line">    if seg.endswith(&quot;.png&quot;):</span><br><span class="line">        total_seg.append(seg)</span><br><span class="line"></span><br><span class="line">num=len(total_seg)  </span><br><span class="line">list=range(num)  </span><br><span class="line">tv=int(num*trainval_percent)  </span><br><span class="line">tr=int(tv*train_percent)  </span><br><span class="line">trainval= random.sample(list,tv)  </span><br><span class="line">train=random.sample(trainval,tr)  </span><br><span class="line"> </span><br><span class="line">print(&quot;train and val size&quot;,tv)</span><br><span class="line">print(&quot;traub suze&quot;,tr)</span><br><span class="line">ftrainval = open(os.path.join(saveBasePath,&#x27;trainval.txt&#x27;), &#x27;w&#x27;)  </span><br><span class="line">ftest = open(os.path.join(saveBasePath,&#x27;test.txt&#x27;), &#x27;w&#x27;)  </span><br><span class="line">ftrain = open(os.path.join(saveBasePath,&#x27;train.txt&#x27;), &#x27;w&#x27;)  </span><br><span class="line">fval = open(os.path.join(saveBasePath,&#x27;val.txt&#x27;), &#x27;w&#x27;)  </span><br><span class="line"> </span><br><span class="line">for i  in list:  </span><br><span class="line">    name=total_seg[i][:-4]+&#x27;\n&#x27;  </span><br><span class="line">    if i in trainval:  </span><br><span class="line">        ftrainval.write(name)  </span><br><span class="line">        if i in train:  </span><br><span class="line">            ftrain.write(name)  </span><br><span class="line">        else:  </span><br><span class="line">            fval.write(name)  </span><br><span class="line">    else:  </span><br><span class="line">        ftest.write(name)  </span><br><span class="line">  </span><br><span class="line">ftrainval.close()  </span><br><span class="line">ftrain.close()  </span><br><span class="line">fval.close()  </span><br><span class="line">ftest .close()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>运行train.py进行训练，修改num_classes参数，设置成 类别个数+1（背景类）</p>
-</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line">import time</span><br><span class="line">import tensorflow as tf</span><br><span class="line">import tensorflow.keras</span><br><span class="line">import numpy as np</span><br><span class="line">from tensorflow.keras import backend as K</span><br><span class="line">from tensorflow.keras.callbacks import (EarlyStopping, ModelCheckpoint, ReduceLROnPlateau,</span><br><span class="line">                             TensorBoard)</span><br><span class="line">from tensorflow.keras.metrics import categorical_accuracy</span><br><span class="line">from tensorflow.keras.optimizers import Adam</span><br><span class="line">from keras.utils.data_utils import get_file</span><br><span class="line">from PIL import Image</span><br><span class="line"></span><br><span class="line">from nets.unet import Unet</span><br><span class="line">from nets.unet_training import CE, Generator, dice_loss_with_CE</span><br><span class="line">from utils.metrics import Iou_score, f_score</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:    </span><br><span class="line">    log_dir = &quot;logs\\&quot;</span><br><span class="line">    #------------------------------#</span><br><span class="line">    #   输入图片的大小</span><br><span class="line">    #------------------------------#</span><br><span class="line">    inputs_size = [512,512,3]</span><br><span class="line">    #------------------------------#</span><br><span class="line">    #   分类个数+1</span><br><span class="line">    #   2+1</span><br><span class="line">    #------------------------------#</span><br><span class="line">    num_classes = 2</span><br><span class="line">    #--------------------------------------------------------------------#</span><br><span class="line">    #   建议选项：</span><br><span class="line">    #   种类少（几类）时，设置为True</span><br><span class="line">    #   种类多（十几类）时，如果batch_size比较大（10以上），那么设置为True</span><br><span class="line">    #   种类多（十几类）时，如果batch_size比较小（10以下），那么设置为False</span><br><span class="line">    #---------------------------------------------------------------------# </span><br><span class="line">    dice_loss = True</span><br><span class="line"></span><br><span class="line">    # 获取model</span><br><span class="line">    model = Unet(inputs_size,num_classes)</span><br><span class="line"></span><br><span class="line">    #-------------------------------------------#</span><br><span class="line">    #   权值文件的下载请看README</span><br><span class="line">    #   权值和主干特征提取网络一定要对应</span><br><span class="line">    #-------------------------------------------#</span><br><span class="line">    #model_path = &quot;./model_data/unet_voc.h5&quot;</span><br><span class="line">    #model.load_weights(model_path, by_name=True, skip_mismatch=True)</span><br><span class="line"></span><br><span class="line">    # 打开数据集的txt</span><br><span class="line">    with open(r&quot;VOCdevkit/VOC2007/ImageSets/Segmentation/train.txt&quot;,&quot;r&quot;) as f:</span><br><span class="line">        train_lines = f.readlines()</span><br><span class="line"></span><br><span class="line">    # 打开数据集的txt</span><br><span class="line">    with open(r&quot;VOCdevkit/VOC2007/ImageSets/Segmentation/val.txt&quot;,&quot;r&quot;) as f:</span><br><span class="line">        val_lines = f.readlines()</span><br><span class="line">        </span><br><span class="line">    #-------------------------------------------------------------------------------#</span><br><span class="line">    #   训练参数的设置</span><br><span class="line">    #   logging表示tensorboard的保存地址</span><br><span class="line">    #   checkpoint用于设置权值保存的细节，period用于修改多少epoch保存一次</span><br><span class="line">    #   reduce_lr用于设置学习率下降的方式</span><br><span class="line">    #   early_stopping用于设定早停，val_loss多次不下降自动结束训练，表示模型基本收敛</span><br><span class="line">    #-------------------------------------------------------------------------------#</span><br><span class="line">    checkpoint_period = ModelCheckpoint(log_dir + &#x27;ep&#123;epoch:03d&#125;-loss&#123;loss:.3f&#125;-val_loss&#123;val_loss:.3f&#125;.h5&#x27;,</span><br><span class="line">                                    monitor=&#x27;val_loss&#x27;, save_weights_only=True, save_best_only=False, period=1)</span><br><span class="line">    reduce_lr = ReduceLROnPlateau(monitor=&#x27;val_loss&#x27;, factor=0.5, patience=3, verbose=1)</span><br><span class="line">    early_stopping = EarlyStopping(monitor=&#x27;val_loss&#x27;, min_delta=0, patience=10, verbose=1)</span><br><span class="line">    tensorboard = TensorBoard(log_dir=log_dir)</span><br><span class="line"></span><br><span class="line">    freeze_layers = 17</span><br><span class="line"></span><br><span class="line">    for i in range(freeze_layers): model.layers[i].trainable = False</span><br><span class="line">    print(&#x27;Freeze the first &#123;&#125; layers of total &#123;&#125; layers.&#x27;.format(freeze_layers, len(model.layers)))</span><br><span class="line"></span><br><span class="line">    #------------------------------------------------------#</span><br><span class="line">    #   主干特征提取网络特征通用，冻结训练可以加快训练速度</span><br><span class="line">    #   也可以在训练初期防止权值被破坏。</span><br><span class="line">    #   Init_Epoch为起始世代</span><br><span class="line">    #   Freeze_Epoch为冻结训练的世代</span><br><span class="line">    #   Epoch总训练世代</span><br><span class="line">    #   提示OOM或者显存不足请调小Batch_size</span><br><span class="line">    #------------------------------------------------------#</span><br><span class="line">    if True:</span><br><span class="line">        lr = 1e-4</span><br><span class="line">        Init_Epoch = 0</span><br><span class="line">        Freeze_Epoch = 50</span><br><span class="line">        Batch_size = 2</span><br><span class="line"></span><br><span class="line">        model.compile(loss = dice_loss_with_CE() if dice_loss else CE(),</span><br><span class="line">                optimizer = Adam(lr=lr),</span><br><span class="line">                metrics = [f_score()])</span><br><span class="line">        print(&#x27;Train on &#123;&#125; samples, val on &#123;&#125; samples, with batch size &#123;&#125;.&#x27;.format(len(train_lines), len(val_lines), Batch_size))</span><br><span class="line"></span><br><span class="line">        gen = Generator(Batch_size, train_lines, inputs_size, num_classes).generate()</span><br><span class="line">        gen_val = Generator(Batch_size, val_lines, inputs_size, num_classes).generate(False)</span><br><span class="line"></span><br><span class="line">        model.fit_generator(gen,</span><br><span class="line">                steps_per_epoch=max(1, len(train_lines)//Batch_size),</span><br><span class="line">                validation_data=gen_val,</span><br><span class="line">                validation_steps=max(1, len(val_lines)//Batch_size),</span><br><span class="line">                epochs=Freeze_Epoch,</span><br><span class="line">                initial_epoch=Init_Epoch,</span><br><span class="line">                callbacks=[checkpoint_period, reduce_lr,tensorboard])</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    for i in range(freeze_layers): model.layers[i].trainable = True</span><br><span class="line"></span><br><span class="line">    if True:</span><br><span class="line">        lr = 1e-5</span><br><span class="line">        Freeze_Epoch = 50</span><br><span class="line">        Unfreeze_Epoch = 100</span><br><span class="line">        Batch_size = 2</span><br><span class="line"></span><br><span class="line">        model.compile(loss = dice_loss_with_CE() if dice_loss else CE(),</span><br><span class="line">                optimizer = Adam(lr=lr),</span><br><span class="line">                metrics = [f_score()])</span><br><span class="line">        print(&#x27;Train on &#123;&#125; samples, val on &#123;&#125; samples, with batch size &#123;&#125;.&#x27;.format(len(train_lines), len(val_lines), Batch_size))</span><br><span class="line"></span><br><span class="line">        gen = Generator(Batch_size, train_lines, inputs_size, num_classes).generate()</span><br><span class="line">        gen_val = Generator(Batch_size, val_lines, inputs_size, num_classes).generate(False)</span><br><span class="line">        </span><br><span class="line">        model.fit_generator(gen,</span><br><span class="line">                steps_per_epoch=max(1, len(train_lines)//Batch_size),</span><br><span class="line">                validation_data=gen_val,</span><br><span class="line">                validation_steps=max(1, len(val_lines)//Batch_size),</span><br><span class="line">                epochs=Unfreeze_Epoch,</span><br><span class="line">                initial_epoch=Freeze_Epoch,</span><br><span class="line">                callbacks=[checkpoint_period, reduce_lr,tensorboard])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="图片预测"><a href="#图片预测" class="headerlink" title="图片预测"></a>图片预测</h1><p>在unet.py中更改三处，1.model_path设置为想要的模型路径。2.num_classes设置为 类别数+1</p>
-<p>3.def generate(self):函数的路径</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line">import colorsys</span><br><span class="line">import copy</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line">import numpy as np</span><br><span class="line">from PIL import Image</span><br><span class="line"></span><br><span class="line">from nets.unet import Unet as unet</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#--------------------------------------------#</span><br><span class="line">#   使用自己训练好的模型预测需要修改2个参数</span><br><span class="line">#   model_path和num_classes都需要修改！</span><br><span class="line">#   如果出现shape不匹配</span><br><span class="line">#   一定要注意训练时的model_path和num_classes数的修改</span><br><span class="line">#--------------------------------------------#</span><br><span class="line">class Unet(object):</span><br><span class="line">    _defaults = &#123;</span><br><span class="line">        &quot;model_path&quot;        : &#x27;1.h5&#x27;,</span><br><span class="line">        &quot;model_image_size&quot;  : (512, 512, 3),</span><br><span class="line">        &quot;num_classes&quot;       : 2,</span><br><span class="line">        #--------------------------------#</span><br><span class="line">        #   blend参数用于控制是否</span><br><span class="line">        #   让识别结果和原图混合</span><br><span class="line">        #--------------------------------#</span><br><span class="line">        &quot;blend&quot;             : True,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    #---------------------------------------------------#</span><br><span class="line">    #   初始化UNET</span><br><span class="line">    #---------------------------------------------------#</span><br><span class="line">    def __init__(self, **kwargs):</span><br><span class="line">        self.__dict__.update(self._defaults)</span><br><span class="line">        self.generate()</span><br><span class="line"></span><br><span class="line">    #---------------------------------------------------#</span><br><span class="line">    #   载入模型</span><br><span class="line">    #---------------------------------------------------#</span><br><span class="line">    def generate(self):</span><br><span class="line">        #-------------------------------#</span><br><span class="line">        #   载入模型与权值</span><br><span class="line">        #-------------------------------#</span><br><span class="line">        self.model = unet(self.model_image_size, self.num_classes)</span><br><span class="line"></span><br><span class="line">        self.model.load_weights(self.model_path)</span><br><span class="line">        print(&#x27;&#123;&#125; model loaded.&#x27;.format(self.model_path))</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        if self.num_classes == 2:</span><br><span class="line">            self.colors = [(255, 255, 255),  (0, 0, 0)]</span><br><span class="line">        elif self.num_classes &lt;= 21:</span><br><span class="line">            self.colors = [(0, 0, 0), (128, 0, 0), (0, 128, 0), (128, 128, 0), (0, 0, 128), (128, 0, 128), (0, 128, 128), </span><br><span class="line">                    (128, 128, 128), (64, 0, 0), (192, 0, 0), (64, 128, 0), (192, 128, 0), (64, 0, 128), (192, 0, 128), </span><br><span class="line">                    (64, 128, 128), (192, 128, 128), (0, 64, 0), (128, 64, 0), (0, 192, 0), (128, 192, 0), (0, 64, 128), (128, 64, 12)]</span><br><span class="line">        else:</span><br><span class="line">            # 画框设置不同的颜色</span><br><span class="line">            hsv_tuples = [(x / len(self.class_names), 1., 1.)</span><br><span class="line">                        for x in range(len(self.class_names))]</span><br><span class="line">            self.colors = list(map(lambda x: colorsys.hsv_to_rgb(*x), hsv_tuples))</span><br><span class="line">            self.colors = list(</span><br><span class="line">                map(lambda x: (int(x[0] * 255), int(x[1] * 255), int(x[2] * 255)),</span><br><span class="line">                    self.colors))</span><br><span class="line"></span><br><span class="line">    def letterbox_image(self ,image, size):</span><br><span class="line">        image = image.convert(&quot;RGB&quot;)</span><br><span class="line">        iw, ih = image.size</span><br><span class="line">        w, h = size</span><br><span class="line">        scale = min(w/iw, h/ih)</span><br><span class="line">        nw = int(iw*scale)</span><br><span class="line">        nh = int(ih*scale)</span><br><span class="line"></span><br><span class="line">        image = image.resize((nw,nh), Image.BICUBIC)</span><br><span class="line">        new_image = Image.new(&#x27;RGB&#x27;, size, (128,128,128))</span><br><span class="line">        new_image.paste(image, ((w-nw)//2, (h-nh)//2))</span><br><span class="line">        return new_image,nw,nh</span><br><span class="line"></span><br><span class="line">    #---------------------------------------------------#</span><br><span class="line">    #   检测图片</span><br><span class="line">    #---------------------------------------------------#</span><br><span class="line">    def detect_image(self, image):</span><br><span class="line">        #---------------------------------------------------#</span><br><span class="line">        #   对输入图像进行一个备份，后面用于绘图</span><br><span class="line">        #---------------------------------------------------#</span><br><span class="line">        old_img = copy.deepcopy(image)</span><br><span class="line">        orininal_h = np.array(image).shape[0]</span><br><span class="line">        orininal_w = np.array(image).shape[1]</span><br><span class="line"></span><br><span class="line">        #---------------------------------------------------#</span><br><span class="line">        #   进行不失真的resize，添加灰条，进行图像归一化</span><br><span class="line">        #---------------------------------------------------#</span><br><span class="line">        img, nw, nh = self.letterbox_image(image,(self.model_image_size[1],self.model_image_size[0]))</span><br><span class="line">        img = np.asarray([np.array(img)/255])</span><br><span class="line">        </span><br><span class="line">        #---------------------------------------------------#</span><br><span class="line">        #   图片传入网络进行预测</span><br><span class="line">        #---------------------------------------------------#</span><br><span class="line">        pr = self.model.predict(img)[0]</span><br><span class="line">        #---------------------------------------------------#</span><br><span class="line">        #   取出每一个像素点的种类</span><br><span class="line">        #---------------------------------------------------#</span><br><span class="line">        pr = pr.argmax(axis=-1).reshape([self.model_image_size[0],self.model_image_size[1]])</span><br><span class="line">        #--------------------------------------#</span><br><span class="line">        #   将灰条部分截取掉</span><br><span class="line">        #--------------------------------------#</span><br><span class="line">        pr = pr[int((self.model_image_size[0]-nh)//2):int((self.model_image_size[0]-nh)//2+nh), int((self.model_image_size[1]-nw)//2):int((self.model_image_size[1]-nw)//2+nw)]</span><br><span class="line"></span><br><span class="line">        #------------------------------------------------#</span><br><span class="line">        #   创建一副新图，并根据每个像素点的种类赋予颜色</span><br><span class="line">        #------------------------------------------------#</span><br><span class="line">        seg_img = np.zeros((np.shape(pr)[0],np.shape(pr)[1],3))</span><br><span class="line">        for c in range(self.num_classes):</span><br><span class="line">            seg_img[:,:,0] += ((pr[:,: ] == c )*( self.colors[c][0] )).astype(&#x27;uint8&#x27;)</span><br><span class="line">            seg_img[:,:,1] += ((pr[:,: ] == c )*( self.colors[c][1] )).astype(&#x27;uint8&#x27;)</span><br><span class="line">            seg_img[:,:,2] += ((pr[:,: ] == c )*( self.colors[c][2] )).astype(&#x27;uint8&#x27;)</span><br><span class="line"></span><br><span class="line">        #------------------------------------------------#</span><br><span class="line">        #   将新图片转换成Image的形式</span><br><span class="line">        #------------------------------------------------#</span><br><span class="line">        image = Image.fromarray(np.uint8(seg_img)).resize((orininal_w,orininal_h), Image.NEAREST)</span><br><span class="line"></span><br><span class="line">        #------------------------------------------------#</span><br><span class="line">        #   将新图片和原图片混合</span><br><span class="line">        #------------------------------------------------#</span><br><span class="line">        if self.blend:</span><br><span class="line">            image = Image.blend(old_img,image,0.7)</span><br><span class="line"></span><br><span class="line">        return image</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>运行predict.py</p>
-<p><strong>注意：</strong>如果报错AttributeError: ‘str’ object has no attribute ‘decode’</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install h5py==2.10 -i https://pypi.doubanio.com/simple</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/GAN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/GAN/" class="post-title-link" itemprop="url">GAN</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-05 14:48:34 / Modified: 14:49:41" itemprop="dateCreated datePublished" datetime="2022-04-05T14:48:34+08:00">2022-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<h1 id="所需python文件"><a href="#所需python文件" class="headerlink" title="所需python文件"></a>所需python文件</h1><h2 id="dataset-py"><a href="#dataset-py" class="headerlink" title="dataset.py"></a>dataset.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_anime_dataset</span>(<span class="params">img_paths, batch_size, resize=<span class="number">64</span>, drop_remainder=<span class="literal">True</span>, shuffle=<span class="literal">True</span>, repeat=<span class="number">1</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># @tf.function</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_map_fn</span>(<span class="params">img</span>):</span><br><span class="line">        img = tf.image.resize(img, [resize, resize])</span><br><span class="line">        <span class="comment"># img = tf.image.random_crop(img,[resize, resize])</span></span><br><span class="line">        <span class="comment"># img = tf.image.random_flip_left_right(img)</span></span><br><span class="line">        <span class="comment"># img = tf.image.random_flip_up_down(img)</span></span><br><span class="line">        img = tf.clip_by_value(img, <span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">        img = img / <span class="number">127.5</span> - <span class="number">1</span> <span class="comment">#-1~1</span></span><br><span class="line">        <span class="keyword">return</span> img</span><br><span class="line"></span><br><span class="line">    dataset = disk_image_batch_dataset(img_paths,</span><br><span class="line">                                          batch_size,</span><br><span class="line">                                          drop_remainder=drop_remainder,</span><br><span class="line">                                          map_fn=_map_fn,</span><br><span class="line">                                          shuffle=shuffle,</span><br><span class="line">                                          repeat=repeat)</span><br><span class="line">    img_shape = (resize, resize, <span class="number">3</span>)</span><br><span class="line">    len_dataset = <span class="built_in">len</span>(img_paths) // batch_size</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dataset, img_shape, len_dataset</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">batch_dataset</span>(<span class="params">dataset,</span></span><br><span class="line"><span class="params">                  batch_size,</span></span><br><span class="line"><span class="params">                  drop_remainder=<span class="literal">True</span>,</span></span><br><span class="line"><span class="params">                  n_prefetch_batch=<span class="number">1</span>,</span></span><br><span class="line"><span class="params">                  filter_fn=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                  map_fn=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                  n_map_threads=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                  filter_after_map=<span class="literal">False</span>,</span></span><br><span class="line"><span class="params">                  shuffle=<span class="literal">True</span>,</span></span><br><span class="line"><span class="params">                  shuffle_buffer_size=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                  repeat=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="comment"># set defaults</span></span><br><span class="line">    <span class="keyword">if</span> n_map_threads <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        n_map_threads = multiprocessing.cpu_count()</span><br><span class="line">    <span class="keyword">if</span> shuffle <span class="keyword">and</span> shuffle_buffer_size <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        shuffle_buffer_size = <span class="built_in">max</span>(batch_size * <span class="number">128</span>, <span class="number">2048</span>)  <span class="comment"># set the minimum buffer size as 2048</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># [*] it is efficient to conduct `shuffle` before `map`/`filter` because `map`/`filter` is sometimes costly</span></span><br><span class="line">    <span class="keyword">if</span> shuffle:</span><br><span class="line">        dataset = dataset.shuffle(shuffle_buffer_size)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> filter_after_map:</span><br><span class="line">        <span class="keyword">if</span> filter_fn:</span><br><span class="line">            dataset = dataset.<span class="built_in">filter</span>(filter_fn)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> map_fn:</span><br><span class="line">            dataset = dataset.<span class="built_in">map</span>(map_fn, num_parallel_calls=n_map_threads)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:  <span class="comment"># [*] this is slower</span></span><br><span class="line">        <span class="keyword">if</span> map_fn:</span><br><span class="line">            dataset = dataset.<span class="built_in">map</span>(map_fn, num_parallel_calls=n_map_threads)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> filter_fn:</span><br><span class="line">            dataset = dataset.<span class="built_in">filter</span>(filter_fn)</span><br><span class="line"></span><br><span class="line">    dataset = dataset.batch(batch_size, drop_remainder=drop_remainder)</span><br><span class="line"></span><br><span class="line">    dataset = dataset.repeat(repeat).prefetch(n_prefetch_batch)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dataset</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">memory_data_batch_dataset</span>(<span class="params">memory_data,</span></span><br><span class="line"><span class="params">                              batch_size,</span></span><br><span class="line"><span class="params">                              drop_remainder=<span class="literal">True</span>,</span></span><br><span class="line"><span class="params">                              n_prefetch_batch=<span class="number">1</span>,</span></span><br><span class="line"><span class="params">                              filter_fn=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                              map_fn=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                              n_map_threads=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                              filter_after_map=<span class="literal">False</span>,</span></span><br><span class="line"><span class="params">                              shuffle=<span class="literal">True</span>,</span></span><br><span class="line"><span class="params">                              shuffle_buffer_size=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                              repeat=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Batch dataset of memory data.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    memory_data : nested structure of tensors/ndarrays/lists</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    dataset = tf.data.Dataset.from_tensor_slices(memory_data)</span><br><span class="line">    dataset = batch_dataset(dataset,</span><br><span class="line">                            batch_size,</span><br><span class="line">                            drop_remainder=drop_remainder,</span><br><span class="line">                            n_prefetch_batch=n_prefetch_batch,</span><br><span class="line">                            filter_fn=filter_fn,</span><br><span class="line">                            map_fn=map_fn,</span><br><span class="line">                            n_map_threads=n_map_threads,</span><br><span class="line">                            filter_after_map=filter_after_map,</span><br><span class="line">                            shuffle=shuffle,</span><br><span class="line">                            shuffle_buffer_size=shuffle_buffer_size,</span><br><span class="line">                            repeat=repeat)</span><br><span class="line">    <span class="keyword">return</span> dataset</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">disk_image_batch_dataset</span>(<span class="params">img_paths,</span></span><br><span class="line"><span class="params">                             batch_size,</span></span><br><span class="line"><span class="params">                             labels=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                             drop_remainder=<span class="literal">True</span>,</span></span><br><span class="line"><span class="params">                             n_prefetch_batch=<span class="number">1</span>,</span></span><br><span class="line"><span class="params">                             filter_fn=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                             map_fn=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                             n_map_threads=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                             filter_after_map=<span class="literal">False</span>,</span></span><br><span class="line"><span class="params">                             shuffle=<span class="literal">True</span>,</span></span><br><span class="line"><span class="params">                             shuffle_buffer_size=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">                             repeat=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Batch dataset of disk image for PNG and JPEG.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">        img_paths : 1d-tensor/ndarray/list of str</span></span><br><span class="line"><span class="string">        labels : nested structure of tensors/ndarrays/lists</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> labels <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        memory_data = img_paths</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        memory_data = (img_paths, labels)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse_fn</span>(<span class="params">path, *label</span>):</span><br><span class="line">        img = tf.io.read_file(path)</span><br><span class="line">        img = tf.image.decode_jpeg(img, channels=<span class="number">3</span>)  <span class="comment"># fix channels to 3</span></span><br><span class="line">        <span class="keyword">return</span> (img,) + label</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> map_fn:  <span class="comment"># fuse `map_fn` and `parse_fn`</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">map_fn_</span>(<span class="params">*args</span>):</span><br><span class="line">            <span class="keyword">return</span> map_fn(*parse_fn(*args))</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        map_fn_ = parse_fn</span><br><span class="line"></span><br><span class="line">    dataset = memory_data_batch_dataset(memory_data,</span><br><span class="line">                                        batch_size,</span><br><span class="line">                                        drop_remainder=drop_remainder,</span><br><span class="line">                                        n_prefetch_batch=n_prefetch_batch,</span><br><span class="line">                                        filter_fn=filter_fn,</span><br><span class="line">                                        map_fn=map_fn_,</span><br><span class="line">                                        n_map_threads=n_map_threads,</span><br><span class="line">                                        filter_after_map=filter_after_map,</span><br><span class="line">                                        shuffle=shuffle,</span><br><span class="line">                                        shuffle_buffer_size=shuffle_buffer_size,</span><br><span class="line">                                        repeat=repeat)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dataset</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="gan-py"><a href="#gan-py" class="headerlink" title="gan.py"></a>gan.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span>    tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span>    tensorflow.keras <span class="keyword">import</span> layers</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Generator</span>(keras.Model):</span><br><span class="line">    <span class="comment"># 生成器网络</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Generator, self).__init__()</span><br><span class="line">        <span class="built_in">filter</span> = <span class="number">64</span></span><br><span class="line">        <span class="comment"># 转置卷积层1,输出channel为filter*8,核大小4,步长1,不使用padding,不使用偏置</span></span><br><span class="line">        self.conv1 = layers.Conv2DTranspose(<span class="built_in">filter</span>*<span class="number">8</span>, <span class="number">4</span>,<span class="number">1</span>, <span class="string">&#x27;valid&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line">        self.bn1 = layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 转置卷积层2</span></span><br><span class="line">        self.conv2 = layers.Conv2DTranspose(<span class="built_in">filter</span>*<span class="number">4</span>, <span class="number">4</span>,<span class="number">2</span>, <span class="string">&#x27;same&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line">        self.bn2 = layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 转置卷积层3</span></span><br><span class="line">        self.conv3 = layers.Conv2DTranspose(<span class="built_in">filter</span>*<span class="number">2</span>, <span class="number">4</span>,<span class="number">2</span>, <span class="string">&#x27;same&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line">        self.bn3 = layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 转置卷积层4</span></span><br><span class="line">        self.conv4 = layers.Conv2DTranspose(<span class="built_in">filter</span>*<span class="number">1</span>, <span class="number">4</span>,<span class="number">2</span>, <span class="string">&#x27;same&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line">        self.bn4 = layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 转置卷积层5</span></span><br><span class="line">        self.conv5 = layers.Conv2DTranspose(<span class="number">3</span>, <span class="number">4</span>,<span class="number">2</span>, <span class="string">&#x27;same&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">call</span>(<span class="params">self, inputs, training=<span class="literal">None</span></span>):</span><br><span class="line">        x = inputs <span class="comment"># [z, 100]</span></span><br><span class="line">        <span class="comment"># Reshape乘4D张量，方便后续转置卷积运算:(b, 1, 1, 100)</span></span><br><span class="line">        x = tf.reshape(x, (x.shape[<span class="number">0</span>], <span class="number">1</span>, <span class="number">1</span>, x.shape[<span class="number">1</span>]))</span><br><span class="line">        x = tf.nn.relu(x) <span class="comment"># 激活函数</span></span><br><span class="line">        <span class="comment"># 转置卷积-BN-激活函数:(b, 4, 4, 512)</span></span><br><span class="line">        x = tf.nn.relu(self.bn1(self.conv1(x), training=training))</span><br><span class="line">        <span class="comment"># 转置卷积-BN-激活函数:(b, 8, 8, 256)</span></span><br><span class="line">        x = tf.nn.relu(self.bn2(self.conv2(x), training=training))</span><br><span class="line">        <span class="comment"># 转置卷积-BN-激活函数:(b, 16, 16, 128)</span></span><br><span class="line">        x = tf.nn.relu(self.bn3(self.conv3(x), training=training))</span><br><span class="line">        <span class="comment"># 转置卷积-BN-激活函数:(b, 32, 32, 64)</span></span><br><span class="line">        x = tf.nn.relu(self.bn4(self.conv4(x), training=training))</span><br><span class="line">        <span class="comment"># 转置卷积-激活函数:(b, 64, 64, 3)</span></span><br><span class="line">        x = self.conv5(x)</span><br><span class="line">        x = tf.tanh(x) <span class="comment"># 输出x范围-1~1,与预处理一致</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Discriminator</span>(keras.Model):</span><br><span class="line">    <span class="comment"># 判别器</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">super</span>(Discriminator, self).__init__()</span><br><span class="line">        <span class="built_in">filter</span> = <span class="number">64</span></span><br><span class="line">        <span class="comment"># 卷积层</span></span><br><span class="line">        self.conv1 = layers.Conv2D(<span class="built_in">filter</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="string">&#x27;valid&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line">        self.bn1 = layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 卷积层</span></span><br><span class="line">        self.conv2 = layers.Conv2D(<span class="built_in">filter</span>*<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="string">&#x27;valid&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line">        self.bn2 = layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 卷积层</span></span><br><span class="line">        self.conv3 = layers.Conv2D(<span class="built_in">filter</span>*<span class="number">4</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="string">&#x27;valid&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line">        self.bn3 = layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 卷积层</span></span><br><span class="line">        self.conv4 = layers.Conv2D(<span class="built_in">filter</span>*<span class="number">8</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="string">&#x27;valid&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line">        self.bn4 = layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 卷积层</span></span><br><span class="line">        self.conv5 = layers.Conv2D(<span class="built_in">filter</span>*<span class="number">16</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="string">&#x27;valid&#x27;</span>, use_bias=<span class="literal">False</span>)</span><br><span class="line">        self.bn5 = layers.BatchNormalization()</span><br><span class="line">        <span class="comment"># 全局池化层</span></span><br><span class="line">        self.pool = layers.GlobalAveragePooling2D()</span><br><span class="line">        <span class="comment"># 特征打平</span></span><br><span class="line">        self.flatten = layers.Flatten()</span><br><span class="line">        <span class="comment"># 2分类全连接层</span></span><br><span class="line">        self.fc = layers.Dense(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">call</span>(<span class="params">self, inputs, training=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="comment"># 卷积-BN-激活函数:(4, 31, 31, 64)</span></span><br><span class="line">        x = tf.nn.leaky_relu(self.bn1(self.conv1(inputs), training=training))</span><br><span class="line">        <span class="comment"># 卷积-BN-激活函数:(4, 14, 14, 128)</span></span><br><span class="line">        x = tf.nn.leaky_relu(self.bn2(self.conv2(x), training=training))</span><br><span class="line">        <span class="comment"># 卷积-BN-激活函数:(4, 6, 6, 256)</span></span><br><span class="line">        x = tf.nn.leaky_relu(self.bn3(self.conv3(x), training=training))</span><br><span class="line">        <span class="comment"># 卷积-BN-激活函数:(4, 4, 4, 512)</span></span><br><span class="line">        x = tf.nn.leaky_relu(self.bn4(self.conv4(x), training=training))</span><br><span class="line">        <span class="comment"># 卷积-BN-激活函数:(4, 2, 2, 1024)</span></span><br><span class="line">        x = tf.nn.leaky_relu(self.bn5(self.conv5(x), training=training))</span><br><span class="line">        <span class="comment"># 卷积-BN-激活函数:(4, 1024)</span></span><br><span class="line">        x = self.pool(x)</span><br><span class="line">        <span class="comment"># 打平</span></span><br><span class="line">        x = self.flatten(x)</span><br><span class="line">        <span class="comment"># 输出，[b, 1024] =&gt; [b, 1]</span></span><br><span class="line">        logits = self.fc(x)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> logits</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line"></span><br><span class="line">    d = Discriminator()</span><br><span class="line">    g = Generator()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    x = tf.random.normal([<span class="number">2</span>, <span class="number">64</span>, <span class="number">64</span>, <span class="number">3</span>])</span><br><span class="line">    z = tf.random.normal([<span class="number">2</span>, <span class="number">100</span>])</span><br><span class="line"></span><br><span class="line">    prob = d(x)</span><br><span class="line">    <span class="built_in">print</span>(prob)</span><br><span class="line">    x_hat = g(z)</span><br><span class="line">    <span class="built_in">print</span>(x_hat.shape)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-<h2 id="gan-train-py"><a href="#gan-train-py" class="headerlink" title="gan_train.py"></a>gan_train.py</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  os</span><br><span class="line"><span class="keyword">import</span>  numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span>  tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span>    tensorflow <span class="keyword">import</span> keras</span><br><span class="line"><span class="keyword">from</span>    scipy.misc <span class="keyword">import</span> toimage</span><br><span class="line"><span class="keyword">import</span>  glob</span><br><span class="line"><span class="keyword">from</span>    gan <span class="keyword">import</span> Generator, Discriminator</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span>    dataset <span class="keyword">import</span> make_anime_dataset</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">save_result</span>(<span class="params">val_out, val_block_size, image_path, color_mode</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">preprocess</span>(<span class="params">img</span>):</span><br><span class="line">        img = ((img + <span class="number">1.0</span>) * <span class="number">127.5</span>).astype(np.uint8)</span><br><span class="line">        <span class="comment"># img = img.astype(np.uint8)</span></span><br><span class="line">        <span class="keyword">return</span> img</span><br><span class="line"></span><br><span class="line">    preprocesed = preprocess(val_out)</span><br><span class="line">    final_image = np.array([])</span><br><span class="line">    single_row = np.array([])</span><br><span class="line">    <span class="keyword">for</span> b <span class="keyword">in</span> <span class="built_in">range</span>(val_out.shape[<span class="number">0</span>]):</span><br><span class="line">        <span class="comment"># concat image into a row</span></span><br><span class="line">        <span class="keyword">if</span> single_row.size == <span class="number">0</span>:</span><br><span class="line">            single_row = preprocesed[b, :, :, :]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            single_row = np.concatenate((single_row, preprocesed[b, :, :, :]), axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># concat image row to final_image</span></span><br><span class="line">        <span class="keyword">if</span> (b+<span class="number">1</span>) % val_block_size == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> final_image.size == <span class="number">0</span>:</span><br><span class="line">                final_image = single_row</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                final_image = np.concatenate((final_image, single_row), axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># reset single row</span></span><br><span class="line">            single_row = np.array([])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> final_image.shape[<span class="number">2</span>] == <span class="number">1</span>:</span><br><span class="line">        final_image = np.squeeze(final_image, axis=<span class="number">2</span>)</span><br><span class="line">    toimage(final_image).save(image_path)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">celoss_ones</span>(<span class="params">logits</span>):</span><br><span class="line">    <span class="comment"># 计算属于与标签为1的交叉熵</span></span><br><span class="line">    y = tf.ones_like(logits)</span><br><span class="line">    loss = keras.losses.binary_crossentropy(y, logits, from_logits=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> tf.reduce_mean(loss)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">celoss_zeros</span>(<span class="params">logits</span>):</span><br><span class="line">    <span class="comment"># 计算属于与便签为0的交叉熵</span></span><br><span class="line">    y = tf.zeros_like(logits)</span><br><span class="line">    loss = keras.losses.binary_crossentropy(y, logits, from_logits=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> tf.reduce_mean(loss)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">d_loss_fn</span>(<span class="params">generator, discriminator, batch_z, batch_x, is_training</span>):</span><br><span class="line">    <span class="comment"># 计算判别器的误差函数</span></span><br><span class="line">    <span class="comment"># 采样生成图片</span></span><br><span class="line">    fake_image = generator(batch_z, is_training)</span><br><span class="line">    <span class="comment"># 判定生成图片</span></span><br><span class="line">    d_fake_logits = discriminator(fake_image, is_training)</span><br><span class="line">    <span class="comment"># 判定真实图片</span></span><br><span class="line">    d_real_logits = discriminator(batch_x, is_training)</span><br><span class="line">    <span class="comment"># 真实图片与1之间的误差</span></span><br><span class="line">    d_loss_real = celoss_ones(d_real_logits)</span><br><span class="line">    <span class="comment"># 生成图片与0之间的误差</span></span><br><span class="line">    d_loss_fake = celoss_zeros(d_fake_logits)</span><br><span class="line">    <span class="comment"># 合并误差</span></span><br><span class="line">    loss = d_loss_fake + d_loss_real</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">g_loss_fn</span>(<span class="params">generator, discriminator, batch_z, is_training</span>):</span><br><span class="line">    <span class="comment"># 采样生成图片</span></span><br><span class="line">    fake_image = generator(batch_z, is_training)</span><br><span class="line">    <span class="comment"># 在训练生成网络时，需要迫使生成图片判定为真</span></span><br><span class="line">    d_fake_logits = discriminator(fake_image, is_training)</span><br><span class="line">    <span class="comment"># 计算生成图片与1之间的误差</span></span><br><span class="line">    loss = celoss_ones(d_fake_logits)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line"></span><br><span class="line">    tf.random.set_seed(<span class="number">3333</span>)</span><br><span class="line">    np.random.seed(<span class="number">3333</span>)</span><br><span class="line">    os.environ[<span class="string">&#x27;TF_CPP_MIN_LOG_LEVEL&#x27;</span>] = <span class="string">&#x27;2&#x27;</span></span><br><span class="line">    <span class="keyword">assert</span> tf.__version__.startswith(<span class="string">&#x27;2.&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    z_dim = <span class="number">100</span> <span class="comment"># 隐藏向量z的长度</span></span><br><span class="line">    epochs = <span class="number">3000000</span> <span class="comment"># 训练步数</span></span><br><span class="line">    batch_size = <span class="number">64</span> <span class="comment"># batch size</span></span><br><span class="line">    learning_rate = <span class="number">0.0002</span></span><br><span class="line">    is_training = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取数据集路径</span></span><br><span class="line">    <span class="comment"># C:\Users\z390\Downloads\anime-faces</span></span><br><span class="line">    <span class="comment"># r&#x27;C:\Users\z390\Downloads\faces\*.jpg&#x27;</span></span><br><span class="line">    img_path = glob.glob(<span class="string">r&#x27;E:\PyCharm\work\15.GAN\dataset\*.jpg&#x27;</span>)</span><br><span class="line">    <span class="comment"># img_path = glob.glob(r&#x27;C:\Users\z390\Downloads\getchu_aligned_with_label\GetChu_aligned2\*.jpg&#x27;)</span></span><br><span class="line">    <span class="comment"># img_path.extend(img_path2)</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;images num:&#x27;</span>, <span class="built_in">len</span>(img_path))</span><br><span class="line">    <span class="comment"># 构建数据集对象</span></span><br><span class="line">    dataset, img_shape, _ = make_anime_dataset(img_path, batch_size, resize=<span class="number">64</span>)</span><br><span class="line">    <span class="built_in">print</span>(dataset, img_shape)</span><br><span class="line">    sample = <span class="built_in">next</span>(<span class="built_in">iter</span>(dataset)) <span class="comment"># 采样</span></span><br><span class="line">    <span class="built_in">print</span>(sample.shape, tf.reduce_max(sample).numpy(),</span><br><span class="line">          tf.reduce_min(sample).numpy())</span><br><span class="line">    dataset = dataset.repeat(<span class="number">100</span>) <span class="comment"># 重复循环</span></span><br><span class="line">    db_iter = <span class="built_in">iter</span>(dataset)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    generator = Generator() <span class="comment"># 创建生成器</span></span><br><span class="line">    generator.build(input_shape = (<span class="number">4</span>, z_dim))</span><br><span class="line">    discriminator = Discriminator() <span class="comment"># 创建判别器</span></span><br><span class="line">    discriminator.build(input_shape=(<span class="number">4</span>, <span class="number">64</span>, <span class="number">64</span>, <span class="number">3</span>))</span><br><span class="line">    <span class="comment"># 分别为生成器和判别器创建优化器</span></span><br><span class="line">    g_optimizer = keras.optimizers.Adam(learning_rate=learning_rate, beta_1=<span class="number">0.5</span>)</span><br><span class="line">    d_optimizer = keras.optimizers.Adam(learning_rate=learning_rate, beta_1=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#断点续训</span></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(<span class="string">&#x27;generator.ckpt&#x27;</span>+<span class="string">&#x27;.index&#x27;</span>):</span><br><span class="line">        generator.load_weights(<span class="string">&#x27;generator.ckpt&#x27;</span>)</span><br><span class="line">        discriminator.load_weights(<span class="string">&#x27;discriminator.ckpt&#x27;</span>)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;Loaded chpt!!&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    d_losses, g_losses = [],[]</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(epochs): <span class="comment"># 训练epochs次</span></span><br><span class="line">        <span class="comment"># 1. 训练判别器</span></span><br><span class="line">        <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 采样隐藏向量</span></span><br><span class="line">            batch_z = tf.random.normal([batch_size, z_dim])</span><br><span class="line">            batch_x = <span class="built_in">next</span>(db_iter) <span class="comment"># 采样真实图片</span></span><br><span class="line">            <span class="comment"># 判别器前向计算</span></span><br><span class="line">            <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">                d_loss = d_loss_fn(generator, discriminator, batch_z, batch_x, is_training)</span><br><span class="line">            grads = tape.gradient(d_loss, discriminator.trainable_variables)</span><br><span class="line">            d_optimizer.apply_gradients(<span class="built_in">zip</span>(grads, discriminator.trainable_variables))</span><br><span class="line">        <span class="comment"># 2. 训练生成器</span></span><br><span class="line">        <span class="comment"># 采样隐藏向量</span></span><br><span class="line">        batch_z = tf.random.normal([batch_size, z_dim])</span><br><span class="line">        batch_x = <span class="built_in">next</span>(db_iter) <span class="comment"># 采样真实图片</span></span><br><span class="line">        <span class="comment"># 生成器前向计算</span></span><br><span class="line">        <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">            g_loss = g_loss_fn(generator, discriminator, batch_z, is_training)</span><br><span class="line">        grads = tape.gradient(g_loss, generator.trainable_variables)</span><br><span class="line">        g_optimizer.apply_gradients(<span class="built_in">zip</span>(grads, generator.trainable_variables))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> epoch % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span>(epoch, <span class="string">&#x27;d-loss:&#x27;</span>,<span class="built_in">float</span>(d_loss), <span class="string">&#x27;g-loss:&#x27;</span>, <span class="built_in">float</span>(g_loss))</span><br><span class="line">            <span class="comment"># 可视化</span></span><br><span class="line">            z = tf.random.normal([<span class="number">100</span>, z_dim])</span><br><span class="line">            fake_image = generator(z, training=<span class="literal">False</span>)</span><br><span class="line">            img_path = os.path.join(<span class="string">&#x27;gan_images&#x27;</span>, <span class="string">&#x27;gan-%d.png&#x27;</span>%epoch)</span><br><span class="line">            save_result(fake_image.numpy(), <span class="number">10</span>, img_path, color_mode=<span class="string">&#x27;P&#x27;</span>)</span><br><span class="line"></span><br><span class="line">            d_losses.append(<span class="built_in">float</span>(d_loss))</span><br><span class="line">            g_losses.append(<span class="built_in">float</span>(g_loss))</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> epoch % <span class="number">300</span> == <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># print(d_losses)</span></span><br><span class="line">                <span class="comment"># print(g_losses)</span></span><br><span class="line">                generator.save_weights(<span class="string">&#x27;generator.ckpt&#x27;</span>)</span><br><span class="line">                discriminator.save_weights(<span class="string">&#x27;discriminator.ckpt&#x27;</span>)</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="How-to-use？"><a href="#How-to-use？" class="headerlink" title="How to use？"></a>How to use？</h1><h2 id="打开gan-train-py"><a href="#打开gan-train-py" class="headerlink" title="打开gan_train.py"></a>打开gan_train.py</h2><p>设置数据集路径：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img_path = glob.glob(<span class="string">r&#x27;E:\PyCharm\work\15.GAN\dataset\*.jpg&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<h2 id="在当前文件夹中创建文件夹：gan-images"><a href="#在当前文件夹中创建文件夹：gan-images" class="headerlink" title="在当前文件夹中创建文件夹：gan_images"></a>在当前文件夹中创建文件夹：gan_images</h2><p>用于存放输出图片</p>
-<p><img src="https://wx4.sinaimg.cn/mw690/007BSstUgy1gnbe5d111rj308205ct8q.jpg"></p>
-<h2 id="运行gan-train-py即可在gan-images文件夹看到输出结果"><a href="#运行gan-train-py即可在gan-images文件夹看到输出结果" class="headerlink" title="运行gan_train.py即可在gan_images文件夹看到输出结果"></a>运行gan_train.py即可在gan_images文件夹看到输出结果</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -779,10 +196,9 @@
       <meta itemprop="name" content="Hexo">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/CNN%E7%BD%91%E7%BB%9C%E6%90%AD%E5%BB%BA%E5%85%A8%E8%BF%87%E7%A8%8B/" class="post-title-link" itemprop="url">CNN网络搭建全过程</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          CNN网络搭建全过程
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -815,7 +231,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to unique_Hang’s blog.</p>
+        <p>Welcome to unique_Hang’s blog.</p>
 <blockquote>
 <p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
 </blockquote>
@@ -963,253 +379,34 @@
 <p>即可：</p>
 <p><img src="https://wx2.sinaimg.cn/mw1024/007BSstUgy1gnaf37g68oj30q10guac2.jpg"></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/%E6%A8%A1%E6%9D%BF/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-05 14:46:27 / Modified: 14:47:21" itemprop="dateCreated datePublished" datetime="2022-04-05T14:46:27+08:00">2022-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/05/%E6%A8%A1%E6%9D%BF/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/05/GAN/" rel="next" title="GAN">
+      GAN <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/%E3%80%90python%E5%AD%A6%E4%B9%A0%E3%80%91%E5%A6%82%E4%BD%95%E7%94%A8%E6%89%8B%E6%9C%BA%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/%E3%80%90python%E5%AD%A6%E4%B9%A0%E3%80%91%E5%A6%82%E4%BD%95%E7%94%A8%E6%89%8B%E6%9C%BA%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E7%94%B5%E8%84%91/" class="post-title-link" itemprop="url">【python学习】如何用手机远程控制电脑</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-05 11:53:19 / Modified: 14:36:44" itemprop="dateCreated datePublished" datetime="2022-04-05T11:53:19+08:00">2022-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<h2 id="思路讲解"><a href="#思路讲解" class="headerlink" title="思路讲解"></a>思路讲解</h2><p>通过python的PyAutoGui函数实现，官方文档链接：<br><a target="_blank" rel="noopener" href="https://pyautogui.readthedocs.io/en/latest/msgbox.html">https://pyautogui.readthedocs.io/en/latest/msgbox.html</a><br>该库提供图片识别定位、鼠标操作、键盘操作函数。<br>通过QQ或微信的远程助手辅助手机控制电脑。</p>
-<h2 id="这是我在bilibili发布的视频"><a href="#这是我在bilibili发布的视频" class="headerlink" title="这是我在bilibili发布的视频"></a>这是我在bilibili发布的视频</h2><iframe src="//player.bilibili.com/player.html?aid=497606390&bvid=BV15K411L7m7&cid=174010751&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-
-<p>感兴趣的小伙伴可以在bilibili私信我，互相交流学习~</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99%E5%88%86%E4%BA%AB/" class="post-title-link" itemprop="url">常用网站分享</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-04-05 11:49:24 / Modified: 14:37:10" itemprop="dateCreated datePublished" datetime="2022-04-05T11:49:24+08:00">2022-04-05</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<h2 id="Markdown在线编辑：http-marxi-co"><a href="#Markdown在线编辑：http-marxi-co" class="headerlink" title="Markdown在线编辑：http://marxi.co/"></a>Markdown在线编辑：<a target="_blank" rel="noopener" href="http://marxi.co/">http://marxi.co/</a></h2><p>可在该可视化网站预先浏览Markdown编写布局<br><img src="https://i.loli.net/2020/04/07/lj7nDbasId5TGBN.png" alt="1.png"></p>
-<h2 id="图床：https-sm-ms"><a href="#图床：https-sm-ms" class="headerlink" title="图床：https://sm.ms/"></a>图床：<a target="_blank" rel="noopener" href="https://sm.ms/">https://sm.ms/</a></h2><p>上传图片提供访问链接，用于博客插图<br><img src="https://i.loli.net/2020/04/07/Lws4pr1Wec8B6my.png" alt="2.png"></p>
-<h2 id="视频片头制作：https-panzoid-com"><a href="#视频片头制作：https-panzoid-com" class="headerlink" title="视频片头制作：https://panzoid.com/"></a>视频片头制作：<a target="_blank" rel="noopener" href="https://panzoid.com/">https://panzoid.com/</a></h2><p>找一个模板、点击左侧的正方体、修改里面text文本，插入中文需要点击custom文体自己添加<br><img src="https://i.loli.net/2020/04/08/NsZRBlu9MYk3XqD.png" alt="666.png"></p>
-<h2 id="百度云搜索：https-wowenda-com"><a href="#百度云搜索：https-wowenda-com" class="headerlink" title="百度云搜索：https://wowenda.com/"></a>百度云搜索：<a target="_blank" rel="noopener" href="https://wowenda.com/">https://wowenda.com/</a></h2><p>搜索百度云盘分享<br><img src="https://i.loli.net/2020/04/07/XLeJDSUvol1R6m4.png" alt="3.png"></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>PPT模板下载：<a target="_blank" rel="noopener" href="http://www.ypppt.com/?utm_source=qq&utm_medium=social&utm_oi=893907464297254912">http://www.ypppt.com/?utm_source&#x3D;qq&amp;utm_medium&#x3D;social&amp;utm_oi&#x3D;893907464297254912</a></p>
-<p>下载免费PPT模板<br><img src="https://i.loli.net/2020/04/07/xyd2wuk5UpAmzjl.png" alt="42432.png"></p>
-<h2 id="图片处理网站："><a href="#图片处理网站：" class="headerlink" title="图片处理网站："></a>图片处理网站：</h2><p>照片去码（扣除人物）：<a target="_blank" rel="noopener" href="https://www.nvidia.com/research/inpainting/">https://www.nvidia.com/research/inpainting/</a><br>通过鼠标涂抹mask（涂抹马赛克范围就是去码，涂抹一个人就是扣除人物）<br><img src="https://i.loli.net/2020/04/24/WuHM7cmBP8ps9R4.png" alt="_WW@_AGBA_FCLM2Z2SFKQ_E.png"><br><img src="https://i.loli.net/2020/04/24/bwzlOyAB8VagFtJ.png" alt="_RC_O_N8WCX0B_ELD3IUGU6.png"><br>![&#96;VRZBI~Y4_1G__8A_AW_8S6.png]()<br><img src="https://i.loli.net/2020/04/24/8lFJ6MRrnSfaD32.png" alt="L8_LCZVE4BML1CYJU_3VNO5.png"><br>配合图片放大网站：<a target="_blank" rel="noopener" href="https://bigjpg.com/">https://bigjpg.com/</a><br>快速换脸：<a target="_blank" rel="noopener" href="https://reflect.tech/faceswap/hot">https://reflect.tech/faceswap/hot</a></p>
-<h2 id="英语听力学习网址：youzack-com"><a href="#英语听力学习网址：youzack-com" class="headerlink" title="英语听力学习网址：youzack.com"></a>英语听力学习网址：youzack.com</h2><h2 id="廖雪峰python学习：https-www-liaoxuefeng-com-wiki-1016959663602400"><a href="#廖雪峰python学习：https-www-liaoxuefeng-com-wiki-1016959663602400" class="headerlink" title="廖雪峰python学习：https://www.liaoxuefeng.com/wiki/1016959663602400"></a>廖雪峰python学习：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1016959663602400">https://www.liaoxuefeng.com/wiki/1016959663602400</a></h2><p>学习python<br><img src="https://i.loli.net/2020/04/07/UvPWMYlhXuBfJT3.png" alt="5.png"></p>
-<h2 id="-1"><a href="#-1" class="headerlink" title=""></a></h2><p>正点原子STM32学习视频：<a target="_blank" rel="noopener" href="https://space.bilibili.com/394620890?from=search&seid=59432885784523843">https://space.bilibili.com/394620890?from=search&seid=59432885784523843</a></p>
-<p>学习STM32<br><img src="https://i.loli.net/2020/04/07/hJTSLAucpDNrBdZ.png" alt="6.png"></p>
-<h2 id="免费看电影网站：https-www-pianku-tv"><a href="#免费看电影网站：https-www-pianku-tv" class="headerlink" title="免费看电影网站：https://www.pianku.tv/"></a>免费看电影网站：<a target="_blank" rel="noopener" href="https://www.pianku.tv/">https://www.pianku.tv/</a></h2><p>待更~  </p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
 
 
 
@@ -1261,6 +458,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%E5%BF%85%E5%A4%87%EF%BC%9A%E7%94%BB%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">论文必备：画图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">搭建网络的步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%BD%91%E7%BB%9Cclass"><span class="nav-number">2.1.</span> <span class="nav-text">搭建网络class</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%85%AD%E6%AD%A5%E6%B3%95"><span class="nav-number">2.1.1.</span> <span class="nav-text">1、六步法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E7%94%A8class%E7%B1%BB%E5%B0%81%E8%A3%85%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%87%BD%E6%95%B0"><span class="nav-number">2.1.2.</span> <span class="nav-text">2、用class类封装神经网络函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.1.3.</span> <span class="nav-text">3、示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%AD%E5%BB%BA%E7%BD%91%E7%BB%9Csequential"><span class="nav-number">2.2.</span> <span class="nav-text">搭建网络sequential</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%85%AD%E6%AD%A5%E6%B3%95-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">1、六步法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81compile-%E9%85%8D%E7%BD%AE%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%AD%E7%BB%83%E6%96%B9%E6%B3%95"><span class="nav-number">2.2.2.</span> <span class="nav-text">2、compile()配置神经网络的训练方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Optimizer%E5%8F%AF%E9%80%89%EF%BC%9A"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Optimizer可选：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loss%E5%8F%AF%E9%80%89%EF%BC%9A"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">loss可选：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#metrics%E5%8F%AF%E9%80%89%EF%BC%9A"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">metrics可选：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81fit-%E6%89%A7%E8%A1%8C%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B"><span class="nav-number">2.2.3.</span> <span class="nav-text">3、fit()执行训练过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81tf%E6%8F%8F%E8%BF%B0%E5%8D%B7%E7%A7%AF%E5%B1%82"><span class="nav-number">2.2.4.</span> <span class="nav-text">4、tf描述卷积层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%93%E8%A7%A3%E8%BF%87%E6%8B%9F%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">缓解过拟合的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%AD%A3%E5%88%99%E5%8C%96"><span class="nav-number">3.1.</span> <span class="nav-text">1、正则化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%8A%A8%E9%87%8F"><span class="nav-number">3.2.</span> <span class="nav-text">2、动量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%AD%A6%E4%B9%A0%E7%8E%87"><span class="nav-number">3.3.</span> <span class="nav-text">3、学习率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81Dropout"><span class="nav-number">3.4.</span> <span class="nav-text">4、Dropout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81BatchNormalization"><span class="nav-number">3.5.</span> <span class="nav-text">5、BatchNormalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81%E6%B1%A0%E5%8C%96"><span class="nav-number">3.6.</span> <span class="nav-text">6、池化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">进阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E8%87%AA%E5%88%B6%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">4.1.</span> <span class="nav-text">1、自制数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA%EF%BC%88%E5%8F%AF%E5%A2%9E%E5%8A%A0%E6%B3%9B%E5%8C%96%E6%80%A7%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">2、数据增强（可增加泛化性）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E6%96%AD%E7%82%B9%E7%BB%AD%E8%AE%AD"><span class="nav-number">4.3.</span> <span class="nav-text">3、断点续训</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E5%8F%82%E6%95%B0%E6%8F%90%E5%8F%96"><span class="nav-number">4.4.</span> <span class="nav-text">4、参数提取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81acc-x2F-loss%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">4.5.</span> <span class="nav-text">5、acc&#x2F;loss可视化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">完整代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E5%BC%A0%E5%9B%BE%E7%89%87%E9%A2%84%E6%B5%8B"><span class="nav-number">6.</span> <span class="nav-text">单张图片预测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%BB%9C"><span class="nav-number">7.</span> <span class="nav-text">常见的网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#LeNet"><span class="nav-number">7.1.</span> <span class="nav-text">LeNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AlexNet"><span class="nav-number">7.2.</span> <span class="nav-text">AlexNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VGGNet"><span class="nav-number">7.3.</span> <span class="nav-text">VGGNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#InceptionNet"><span class="nav-number">7.4.</span> <span class="nav-text">InceptionNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ResNet"><span class="nav-number">7.5.</span> <span class="nav-text">ResNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">7.6.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TensorBoard%E5%8F%AF%E8%A7%86%E5%8C%96"><span class="nav-number">8.</span> <span class="nav-text">TensorBoard可视化</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
