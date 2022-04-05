@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Welcome to unique_Hang’s blog.  鲁迅说过：看unique_Hang博客的人颜值都很高！   打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开  作者邮箱：unique_hang@qq.com喜欢的小伙伴可以关注我的b站账号(https:&#x2F;&#x2F;space.bilibili.com&#x2F;290100464)    1、连接服务器需要下载xshell 7和XFTP 下载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务器初探">
+<meta property="og:url" content="http://example.com/2022/04/05/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%9D%E6%8E%A2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Welcome to unique_Hang’s blog.  鲁迅说过：看unique_Hang博客的人颜值都很高！   打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开  作者邮箱：unique_hang@qq.com喜欢的小伙伴可以关注我的b站账号(https:&#x2F;&#x2F;space.bilibili.com&#x2F;290100464)    1、连接服务器需要下载xshell 7和XFTP 下载">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw690/007BSstUgy1gmrns7s6fij30nb0bkgok.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw690/007BSstUgy1gmrnu6kfn4j30lx07wdj4.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw690/007BSstUgy1gmrnua463oj30mr05yjtl.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw690/007BSstUgy1gmrnuj6yxyj30xr0nlnbn.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw690/007BSstUgy1gmro4mvwqsj30jo0eo0vz.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw690/007BSstUgy1gmro4p92bbj306801cdfp.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw690/007BSstUgy1gmrofk0t2bj30yl0drwhs.jpg">
+<meta property="article:published_time" content="2022-04-05T07:20:38.674Z">
+<meta property="article:modified_time" content="2022-04-05T07:21:22.435Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wx3.sinaimg.cn/mw690/007BSstUgy1gmrns7s6fij30nb0bkgok.jpg">
+
+<link rel="canonical" href="http://example.com/2022/04/05/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%9D%E6%8E%A2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>服务器初探 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%9D%E6%8E%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          服务器初探
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-05 15:20:38 / Modified: 15:21:22" itemprop="dateCreated datePublished" datetime="2022-04-05T15:20:38+08:00">2022-04-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Welcome to unique_Hang’s blog.</p>
+<blockquote>
+<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong>  </p>
+<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开</p>
+<p> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
+</blockquote>
+<h1 id="1、连接服务器"><a href="#1、连接服务器" class="headerlink" title="1、连接服务器"></a>1、连接服务器</h1><p>需要下载xshell 7和XFTP</p>
+<p><a target="_blank" rel="noopener" href="https://www.netsarang.com/en/free-for-home-school/">下载链接</a></p>
+<h1 id="2、创建账户"><a href="#2、创建账户" class="headerlink" title="2、创建账户"></a>2、创建账户</h1><p>步骤：</p>
+<p><strong>1、创建新用户</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo adduser USERNAME</span><br></pre></td></tr></table></figure>
+
+<p>其中USERNAME是您要添加的用户的名称。</p>
+<p><strong>2、给予sudo权限</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG sudo USER</span><br></pre></td></tr></table></figure>
+
+<p>其中USER是新的用户名。</p>
+<p><strong>3、修改默认目录,在root账户下输入（建文件夹时用自己的账户）：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -d /tmp test</span><br></pre></td></tr></table></figure>
+
+<p>tmp是默认目录，test为你的用户名</p>
+<p><strong>4、查看用户路径</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cat/etc/passwd</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="3、anaconda安装"><a href="#3、anaconda安装" class="headerlink" title="3、anaconda安装"></a>3、anaconda安装</h1><p>步骤：</p>
+<p><strong>1、提前下载好Linux下的版本，（eg：Anaconda3-2019.07-Linux-x86_64.sh）</strong></p>
+<p><strong>2、cd进入下载目录</strong></p>
+<p><strong>3、安装请输入</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2019.07-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+<p><strong>4、一直按回车，直到出现</strong></p>
+<p><img src="https://wx3.sinaimg.cn/mw690/007BSstUgy1gmrns7s6fij30nb0bkgok.jpg"></p>
+<p><strong>5、输入：yes接受</strong></p>
+<p><img src="https://wx2.sinaimg.cn/mw690/007BSstUgy1gmrnu6kfn4j30lx07wdj4.jpg"></p>
+<p><strong>6、这个地方就是说，Anaconda安装到默认目录下，安装好后你可以在该文件夹下看到安装文件，此处你用可以自己更改目录，我这个地方就用默认的，如何你用默认的就直接点击Enter，如果你想其他的你就自己输入路径。</strong></p>
+<p><strong>7、接下来就是安装，最后会出现这样一个界面:</strong></p>
+<p><img src="https://wx4.sinaimg.cn/mw690/007BSstUgy1gmrnua463oj30mr05yjtl.jpg"></p>
+<p>这一步确认是否由Anaconda进行终端的初始化，一般选择yes，否则无法使用虚拟环境</p>
+<p><strong>8、安装成功</strong></p>
+<p><img src="https://wx4.sinaimg.cn/mw690/007BSstUgy1gmrnuj6yxyj30xr0nlnbn.jpg"></p>
+<h1 id="4、anaconda配置"><a href="#4、anaconda配置" class="headerlink" title="4、anaconda配置"></a>4、anaconda配置</h1><p>在终端中输入conda，发现command not found，解决方法如下：</p>
+<p>步骤：</p>
+<p><strong>1、将anaconda的bin目录加入PATH（有新的虚拟环境也要加入PATH），输入：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export PATH=&quot;/home/anaconda3/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>根据版本不同，也可能是~&#x2F;anaconda2&#x2F;bin</p>
+<p><strong>2、更新bashrc以立即生效，输入：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="5、创建一个python环境"><a href="#5、创建一个python环境" class="headerlink" title="5、创建一个python环境"></a>5、创建一个python环境</h1><p><strong>0、换源</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/win-64/</span><br><span class="line"></span><br><span class="line">conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win-64/</span><br><span class="line"></span><br><span class="line">conda config --set show_channel_urls yes </span><br><span class="line"></span><br><span class="line">conda config --get channels</span><br></pre></td></tr></table></figure>
+
+<p><strong>1、查看当前存在哪些虚拟环境</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+
+<p><strong>2、创建虚拟环境</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tensorflow2（自定义python名称） python=3.6 </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://wx2.sinaimg.cn/mw690/007BSstUgy1gmro4mvwqsj30jo0eo0vz.jpg"></p>
+<p><strong>3、输入：y</strong></p>
+<p><img src="https://wx2.sinaimg.cn/mw690/007BSstUgy1gmro4p92bbj306801cdfp.jpg"></p>
+<p><strong>4、进入环境</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate tensorflow2</span><br></pre></td></tr></table></figure>
+
+<p><strong>5、安装自己所需的库</strong></p>
+<h1 id="6、Tensorflow2的安装"><a href="#6、Tensorflow2的安装" class="headerlink" title="6、Tensorflow2的安装"></a>6、Tensorflow2的安装</h1><p><strong>1、tensorflow对应cuda的兼容版本问题</strong></p>
+<p> <a target="_blank" rel="noopener" href="https://tensorflow.google.cn/install/source">官方网址</a></p>
+<p><img src="https://wx1.sinaimg.cn/mw690/007BSstUgy1gmrofk0t2bj30yl0drwhs.jpg"></p>
+<p><strong>2、下载tensorflow2.0.0</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#cpu</span><br><span class="line">pip install tensorflow==2.0.0-alpha0</span><br><span class="line">#gpu</span><br><span class="line">pip install tensorflow-gpu==2.0.0-alpha</span><br></pre></td></tr></table></figure>
+
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda create -n tf2 python=3.8 cudatoolkit=10.1</span><br><span class="line"></span><br><span class="line">conda install tensorflow-gpu=2.3</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#940M也能跑</span><br><span class="line">conda create -n tf2 python=3.7 cudatoolkit=10 tensorflow-gpu=2.0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create -n pytorch1（替换成你想要的名字） pytorch torchvision cudatoolkit=10.1 -c pytorch</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>3、把cuda路径加入环境变量</strong></p>
+<p>终端输入编辑环境变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc				</span><br></pre></td></tr></table></figure>
+
+<p>强行写入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">：w！</span><br></pre></td></tr></table></figure>
+
+<p>编辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></table></figure>
+
+<p>粘贴cuda路径如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#----------- This is PATH of CUDA10.0---------</span><br><span class="line">export CUDA_HOME=/usr/local/cuda-10.0</span><br><span class="line">export PATH=/usr/local/cuda-10.0/bin:$PATH</span><br><span class="line">export LD_LIBRARY_PATH=&quot;$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64&quot;</span><br><span class="line">export LIBRARY_PATH=&quot;$LIBRARY_PATH:/usr/local/cuda-10.0/lib64&quot;</span><br><span class="line">#----------- This is PATH of CUDA10.0---------</span><br></pre></td></tr></table></figure>
+
+<p>按Esc退出编辑后输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">：wq</span><br></pre></td></tr></table></figure>
+
+<p>更新配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p><strong>4、检查tensorflow-gpu是否可用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">print(tf.__version__)</span><br><span class="line">print(tf.test.is_gpu_available())</span><br></pre></td></tr></table></figure>
+
+<p><strong>5、指定GPU训练</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#用第二张显卡训练</span><br><span class="line">CUDA_VISIBLE_DEVICES=1 python train.py</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/05/%E5%B8%B8%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="常遇到的问题">
+      <i class="fa fa-chevron-left"></i> 常遇到的问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/05/%E6%A0%BC%E5%BC%8F%E5%8C%96SD%E5%8D%A1/" rel="next" title="格式化SD卡">
+      格式化SD卡 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E3%80%81%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">1、连接服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BA%E8%B4%A6%E6%88%B7"><span class="nav-number">2.</span> <span class="nav-text">2、创建账户</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%E3%80%81anaconda%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">3、anaconda安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4%E3%80%81anaconda%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">4、anaconda配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5%E3%80%81%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AApython%E7%8E%AF%E5%A2%83"><span class="nav-number">5.</span> <span class="nav-text">5、创建一个python环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6%E3%80%81Tensorflow2%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">6.</span> <span class="nav-text">6、Tensorflow2的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">6.0.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
