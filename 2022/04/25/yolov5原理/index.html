@@ -20,19 +20,31 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Welcome to unique_Hang’s blog.  鲁迅说过：看unique_Hang博客的人颜值都很高！   打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开  作者邮箱：unique_hang@qq.com喜欢的小伙伴可以关注我的b站账号(https:&#x2F;&#x2F;space.bilibili.com&#x2F;290100464)    DenseDepth运行记录1234567891">
+  <meta name="description" content="Welcome to unique_Hang’s blog.  鲁迅说过：看unique_Hang博客的人颜值都很高！   打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开作者邮箱：&amp;#117;&amp;#x6e;&amp;#x69;&amp;#113;&amp;#x75;&amp;#101;&amp;#x5f;&amp;#104;&amp;#97;&amp;#x6e;&amp;#x67;&amp;#x40;&amp;#x71;&amp;#113;&amp;#x2e;&amp;#99;&amp;#111;&amp;#">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DenseDepth">
-<meta property="og:url" content="http://example.com/2022/04/05/DenseDepth/index.html">
+<meta property="og:title" content="yolov5原理">
+<meta property="og:url" content="http://example.com/2022/04/25/yolov5%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="unique_Hang&#39;s blog">
-<meta property="og:description" content="Welcome to unique_Hang’s blog.  鲁迅说过：看unique_Hang博客的人颜值都很高！   打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开  作者邮箱：unique_hang@qq.com喜欢的小伙伴可以关注我的b站账号(https:&#x2F;&#x2F;space.bilibili.com&#x2F;290100464)    DenseDepth运行记录1234567891">
+<meta property="og:description" content="Welcome to unique_Hang’s blog.  鲁迅说过：看unique_Hang博客的人颜值都很高！   打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开作者邮箱：&amp;#117;&amp;#x6e;&amp;#x69;&amp;#113;&amp;#x75;&amp;#101;&amp;#x5f;&amp;#104;&amp;#97;&amp;#x6e;&amp;#x67;&amp;#x40;&amp;#x71;&amp;#113;&amp;#x2e;&amp;#99;&amp;#111;&amp;#">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-04-05T07:07:58.720Z">
-<meta property="article:modified_time" content="2022-04-06T06:23:55.591Z">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw2000/007BSstUgy1h1lswbglnxj30uz0tddnn.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1lxenahgpj31hc0u01kx.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw2000/007BSstUgy1h1lx3id3a4j31g50ev7kd.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1m07hbenej317e0oqaiu.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1m2ie0f4yj30xl0qcgrq.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw2000/007BSstUgy1h1m2nncjdrj31hc0u0wua.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw2000/007BSstUgy1h1m2rvocj3j31hc0u04d1.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw2000/007BSstUgy1h1m399fi6lj31hc0u04dn.jpg">
+<meta property="og:image" content="https://wx4.sinaimg.cn/mw2000/007BSstUgy1h1m3ivfrbyj31790qib0t.jpg">
+<meta property="og:image" content="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1m3muilraj30yd0sjqme.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw2000/007BSstUgy1h1m3qk9b8qj31gp0gwtyc.jpg">
+<meta property="article:published_time" content="2022-04-25T03:20:48.072Z">
+<meta property="article:modified_time" content="2022-04-25T11:20:58.000Z">
 <meta property="article:author" content="unique_Hang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wx2.sinaimg.cn/mw2000/007BSstUgy1h1lswbglnxj30uz0tddnn.jpg">
 
-<link rel="canonical" href="http://example.com/2022/04/05/DenseDepth/">
+<link rel="canonical" href="http://example.com/2022/04/25/yolov5%E5%8E%9F%E7%90%86/">
 
 
 <script id="page-configurations">
@@ -45,7 +57,7 @@
   };
 </script>
 
-  <title>DenseDepth | unique_Hang's blog</title>
+  <title>yolov5原理 | unique_Hang's blog</title>
   
 
 
@@ -155,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/DenseDepth/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/25/yolov5%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -168,7 +180,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          DenseDepth
+          yolov5原理
         </h1>
 
         <div class="post-meta">
@@ -177,16 +189,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2022-04-05 15:07:58" itemprop="dateCreated datePublished" datetime="2022-04-05T15:07:58+08:00">2022-04-05</time>
+              <time title="Created: 2022-04-25 11:20:48 / Modified: 19:20:58" itemprop="dateCreated datePublished" datetime="2022-04-25T11:20:48+08:00">2022-04-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-06 14:23:55" itemprop="dateModified" datetime="2022-04-06T14:23:55+08:00">2022-04-06</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -213,19 +219,29 @@
 <p>Welcome to unique_Hang’s blog.</p>
 <blockquote>
 <p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong>  </p>
-<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开</p>
-<p> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
+<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开<br>作者邮箱：<a href="mailto:&#117;&#x6e;&#x69;&#113;&#x75;&#101;&#x5f;&#104;&#97;&#x6e;&#x67;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#109;">&#117;&#x6e;&#x69;&#113;&#x75;&#101;&#x5f;&#104;&#97;&#x6e;&#x67;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#109;</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
 </blockquote>
-<h2 id="DenseDepth运行记录"><a href="#DenseDepth运行记录" class="headerlink" title="DenseDepth运行记录"></a>DenseDepth运行记录</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pip install --ignore-installed --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple tensorflow-gpu==1.13.1</span><br><span class="line"></span><br><span class="line">pip install --ignore-installed --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple keras==2.2.4</span><br><span class="line"></span><br><span class="line">pip install h5py==2.10</span><br><span class="line"></span><br><span class="line">pip install matplotlib</span><br><span class="line"></span><br><span class="line">pip install scikit-image</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python test.py</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">pip install opencv-python</span><br><span class="line"></span><br><span class="line">pip install scikit-learn</span><br><span class="line"></span><br><span class="line">pip install pydot</span><br><span class="line"></span><br><span class="line">conda install GraphViz --channel conda-forge -y</span><br><span class="line"></span><br><span class="line">python train.py --data nyu --gpus 0 --bs 8</span><br></pre></td></tr></table></figure>
-
-
-
-<p>服务器代码已经跑通，用的conda的pytorch环境</p>
-<p>不需要提取数据集，因为在训练时代码会将整个zip文件加载到内存中。</p>
-<p>参考：</p>
-<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Kja394OvoGY">https://www.youtube.com/watch?v=Kja394OvoGY</a><br><a target="_blank" rel="noopener" href="https://github.com/ialhashim/DenseDepth">https://github.com/ialhashim/DenseDepth</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/257985868">https://zhuanlan.zhihu.com/p/257985868</a></p>
+<p><img src="https://wx2.sinaimg.cn/mw2000/007BSstUgy1h1lswbglnxj30uz0tddnn.jpg"></p>
+<p><img src="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1lxenahgpj31hc0u01kx.jpg"></p>
+<h2 id="网络架构与组件"><a href="#网络架构与组件" class="headerlink" title="网络架构与组件"></a>网络架构与组件</h2><p><img src="https://wx3.sinaimg.cn/mw2000/007BSstUgy1h1lx3id3a4j31g50ev7kd.jpg"></p>
+<p>YOLOv5包括</p>
+<ul>
+<li>Backbone:Focus,BottleneckCSP,SPP</li>
+<li>Head:PANet+Detect(类似于YOLOv3&#x2F;v4 Head)</li>
+</ul>
+<p><img src="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1m07hbenej317e0oqaiu.jpg"></p>
+<p>Focus（）模块设计用于减少FLOPS和提高速度，而不是mAP i,输入是[b,c,h,w]会变成[b,c*4,h&#x2F;&#x2F;2,w&#x2F;&#x2F;2],把宽度w和高度h的信息整合到c空间中</p>
+<p><img src="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1m2ie0f4yj30xl0qcgrq.jpg"></p>
+<p><img src="https://wx2.sinaimg.cn/mw2000/007BSstUgy1h1m2nncjdrj31hc0u0wua.jpg"></p>
+<p>SPP增加感受野，提取重要的上下文特征，不会导致速度的减小。</p>
+<p><img src="https://wx3.sinaimg.cn/mw2000/007BSstUgy1h1m2rvocj3j31hc0u04d1.jpg"></p>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p><img src="https://wx4.sinaimg.cn/mw2000/007BSstUgy1h1m399fi6lj31hc0u04dn.jpg"></p>
+<p><img src="https://wx4.sinaimg.cn/mw2000/007BSstUgy1h1m3ivfrbyj31790qib0t.jpg"></p>
+<p><img src="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1m3muilraj30yd0sjqme.jpg"></p>
+<p><img src="https://wx3.sinaimg.cn/mw2000/007BSstUgy1h1m3qk9b8qj31gp0gwtyc.jpg"></p>
+<p><strong>DIOU的适应性更好</strong></p>
+<h3 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h3><p>DIOU比 IOU和GIOU 有更快的收敛速度</p>
+<p>CIOU考虑的因素更多，考虑了：重叠的面积（overlap area），中点距离（central point distance），宽高比（aspect ratio）</p>
 
     </div>
 
@@ -241,7 +257,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link: </strong>
-    <a href="http://example.com/2022/04/05/DenseDepth/" title="DenseDepth">http://example.com/2022/04/05/DenseDepth/</a>
+    <a href="http://example.com/2022/04/25/yolov5%E5%8E%9F%E7%90%86/" title="yolov5原理">http://example.com/2022/04/25/yolov5原理/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
@@ -258,13 +274,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/04/05/yolov5%E4%BD%BF%E7%94%A8/" rel="prev" title="yolov5使用">
-      <i class="fa fa-chevron-left"></i> yolov5使用
+    <a href="/2022/04/13/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="prev" title="python数据结构">
+      <i class="fa fa-chevron-left"></i> python数据结构
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/04/05/aid%20learning%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/" rel="next" title="aid learning使用笔记">
-      aid learning使用笔记 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -323,7 +336,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DenseDepth%E8%BF%90%E8%A1%8C%E8%AE%B0%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">DenseDepth运行记录</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E4%B8%8E%E7%BB%84%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">网络架构与组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA%EF%BC%9A"><span class="nav-number">2.1.</span> <span class="nav-text">结论：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

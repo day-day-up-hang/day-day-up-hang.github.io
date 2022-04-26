@@ -150,6 +150,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/25/yolov5%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="unique_Hang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="unique_Hang's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/25/yolov5%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">yolov5原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-04-25 11:20:48 / Modified: 19:20:58" itemprop="dateCreated datePublished" datetime="2022-04-25T11:20:48+08:00">2022-04-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <meta name="referrer" content="no-referrer" /> 
+
+<p>Welcome to unique_Hang’s blog.</p>
+<blockquote>
+<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong>  </p>
+<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开<br>作者邮箱：<a href="mailto:&#117;&#x6e;&#x69;&#113;&#x75;&#101;&#x5f;&#104;&#97;&#x6e;&#x67;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#109;">&#117;&#x6e;&#x69;&#113;&#x75;&#101;&#x5f;&#104;&#97;&#x6e;&#x67;&#x40;&#x71;&#113;&#x2e;&#99;&#111;&#109;</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
+</blockquote>
+<p><img src="https://wx2.sinaimg.cn/mw2000/007BSstUgy1h1lswbglnxj30uz0tddnn.jpg"></p>
+<p><img src="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1lxenahgpj31hc0u01kx.jpg"></p>
+<h2 id="网络架构与组件"><a href="#网络架构与组件" class="headerlink" title="网络架构与组件"></a>网络架构与组件</h2><p><img src="https://wx3.sinaimg.cn/mw2000/007BSstUgy1h1lx3id3a4j31g50ev7kd.jpg"></p>
+<p>YOLOv5包括</p>
+<ul>
+<li>Backbone:Focus,BottleneckCSP,SPP</li>
+<li>Head:PANet+Detect(类似于YOLOv3&#x2F;v4 Head)</li>
+</ul>
+<p><img src="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1m07hbenej317e0oqaiu.jpg"></p>
+<p>Focus（）模块设计用于减少FLOPS和提高速度，而不是mAP i,输入是[b,c,h,w]会变成[b,c*4,h&#x2F;&#x2F;2,w&#x2F;&#x2F;2],把宽度w和高度h的信息整合到c空间中</p>
+<p><img src="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1m2ie0f4yj30xl0qcgrq.jpg"></p>
+<p><img src="https://wx2.sinaimg.cn/mw2000/007BSstUgy1h1m2nncjdrj31hc0u0wua.jpg"></p>
+<p>SPP增加感受野，提取重要的上下文特征，不会导致速度的减小。</p>
+<p><img src="https://wx3.sinaimg.cn/mw2000/007BSstUgy1h1m2rvocj3j31hc0u04d1.jpg"></p>
+<h2 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h2><p><img src="https://wx4.sinaimg.cn/mw2000/007BSstUgy1h1m399fi6lj31hc0u04dn.jpg"></p>
+<p><img src="https://wx4.sinaimg.cn/mw2000/007BSstUgy1h1m3ivfrbyj31790qib0t.jpg"></p>
+<p><img src="https://wx1.sinaimg.cn/mw2000/007BSstUgy1h1m3muilraj30yd0sjqme.jpg"></p>
+<p><img src="https://wx3.sinaimg.cn/mw2000/007BSstUgy1h1m3qk9b8qj31gp0gwtyc.jpg"></p>
+<p><strong>DIOU的适应性更好</strong></p>
+<h3 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h3><p>DIOU比 IOU和GIOU 有更快的收敛速度</p>
+<p>CIOU考虑的因素更多，考虑了：重叠的面积（overlap area），中点距离（central point distance），宽高比（aspect ratio）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/13/python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -209,7 +304,7 @@
 <p>Welcome to unique_Hang’s blog.</p>
 <blockquote>
 <p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong>  </p>
-<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开<br>作者邮箱：<a href="mailto:&#117;&#x6e;&#x69;&#113;&#117;&#101;&#95;&#x68;&#97;&#x6e;&#x67;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;">&#117;&#x6e;&#x69;&#113;&#117;&#101;&#95;&#x68;&#97;&#x6e;&#x67;&#64;&#113;&#113;&#x2e;&#99;&#111;&#109;</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
+<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开<br>作者邮箱：<a href="mailto:&#117;&#110;&#105;&#113;&#x75;&#101;&#95;&#104;&#x61;&#110;&#103;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#109;">&#117;&#110;&#105;&#113;&#x75;&#101;&#95;&#104;&#x61;&#110;&#103;&#x40;&#x71;&#x71;&#46;&#x63;&#111;&#109;</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
 </blockquote>
 <h1 id="python数据结构"><a href="#python数据结构" class="headerlink" title="python数据结构"></a>python数据结构</h1><p><img src="https://wx4.sinaimg.cn/mw2000/007BSstUgy1h1dw6ja6saj30kk0feaby.jpg"></p>
 <h2 id="1-栈-gt-列表"><a href="#1-栈-gt-列表" class="headerlink" title="1.栈 -&gt; 列表"></a>1.栈 -&gt; 列表</h2><p><img src="https://wx2.sinaimg.cn/mw2000/008qBzMjgy1h0py43kzyij30py0f9jyw.jpg"></p>
@@ -663,7 +758,7 @@ print(mytree[2])
 <p>Welcome to unique_Hang’s blog.</p>
 <blockquote>
 <p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong>  </p>
-<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开<br>作者邮箱：<a href="mailto:&#x75;&#x6e;&#x69;&#x71;&#117;&#101;&#x5f;&#x68;&#x61;&#110;&#103;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#x6d;">&#x75;&#x6e;&#x69;&#x71;&#117;&#101;&#x5f;&#x68;&#x61;&#110;&#103;&#x40;&#113;&#113;&#46;&#99;&#x6f;&#x6d;</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
+<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开<br>作者邮箱：<a href="mailto:&#117;&#110;&#x69;&#113;&#117;&#x65;&#95;&#x68;&#x61;&#x6e;&#103;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;">&#117;&#110;&#x69;&#113;&#117;&#x65;&#95;&#x68;&#x61;&#x6e;&#103;&#x40;&#113;&#x71;&#46;&#x63;&#111;&#109;</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
 </blockquote>
 <h2 id="1-Visual-Studio创建项目"><a href="#1-Visual-Studio创建项目" class="headerlink" title="1 Visual Studio创建项目"></a>1 Visual Studio创建项目</h2><h3 id="1-1-第一个C-程序"><a href="#1-1-第一个C-程序" class="headerlink" title="1.1  第一个C++程序"></a>1.1  第一个C++程序</h3><p>编写一个C++程序总共分为4个步骤</p>
 <ul>
@@ -3264,96 +3359,6 @@ print(mytree[2])
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/pycharm%E6%98%A0%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="unique_Hang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="unique_Hang's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/pycharm%E6%98%A0%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">pycharm映射服务器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-05 15:17:21" itemprop="dateCreated datePublished" datetime="2022-04-05T15:17:21+08:00">2022-04-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-06 14:24:22" itemprop="dateModified" datetime="2022-04-06T14:24:22+08:00">2022-04-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <meta name="referrer" content="no-referrer" /> 
-
-<p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong>  </p>
-<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开</p>
-<p> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<ol>
-<li>设置</li>
-<li>add interpreter </li>
-<li>连接服务器 tyc</li>
-<li>conda info –env找到python位置  anaconda bin下找到对应版本python</li>
-<li>填入pycharm  去掉自动upload选项</li>
-<li>退回 setting 建立映射</li>
-<li>run中建立映射</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3423,7 +3428,7 @@ print(mytree[2])
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
