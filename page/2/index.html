@@ -150,6 +150,118 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/ssh%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="unique_Hang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="unique_Hang's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/05/ssh%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">ssh安装与使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-04-05 15:17:54" itemprop="dateCreated datePublished" datetime="2022-04-05T15:17:54+08:00">2022-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-04-06 14:24:37" itemprop="dateModified" datetime="2022-04-06T14:24:37+08:00">2022-04-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%A5%E5%B8%B8/" itemprop="url" rel="index"><span itemprop="name">日常</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <meta name="referrer" content="no-referrer" /> 
+
+<p>Welcome to unique_Hang’s blog.</p>
+<blockquote>
+<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong>  </p>
+<p>打不开图片可以鼠标右键点击“复制图片地址”在新窗口中打开</p>
+<p> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的b站账号(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
+</blockquote>
+<h1 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明"></a>1.说明</h1><p>SSH 分客户端 openssh-client和 openssh-server。如果只是想登陆别的机器的 SSH 只需要安装 openssh-client（ubuntu 有默认安装，如果没有则 sudoapt-get install openssh-client），如果要使本机开放 SSH 服务就需要安装 openssh-server。</p>
+<h1 id="2-安装客户端（登陆别的机器）"><a href="#2-安装客户端（登陆别的机器）" class="headerlink" title="2. 安装客户端（登陆别的机器）"></a>2. 安装客户端（登陆别的机器）</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ssh 或者 sudo apt-get install openssh-client</span><br><span class="line"></span><br><span class="line">ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>根据提示按回车，(按回车设置默认值)<br>按缺省生成 id_rsa和 id_rsa.pub 文件，分别是私钥和公钥。<br>说明：如果 sudo apt-get insall ssh 出错，无法安装可使用 sudo apt-get install openssh-client 进行安装。<br>假定服务器 IP 为 192.168.0.128，服务器上用户为 ujs；<br>用 ssh 登录服务器的命令为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh ujs@192.168.0.128</span><br></pre></td></tr></table></figure>
+
+<p>按照提示输入服务器密码即可远程连接。</p>
+<h1 id="3-安装服务端（开放-SSH-服务）"><a href="#3-安装服务端（开放-SSH-服务）" class="headerlink" title="3. 安装服务端（开放 SSH 服务）"></a>3. 安装服务端（开放 SSH 服务）</h1><p>Ubuntu 缺省没有安装 SSH Server，使用以下命令安装：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openssh-server</span><br></pre></td></tr></table></figure>
+
+<p>然后确认 sshserver 是否启动了：（或用“netstat -tlp”命令）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -e|grep ssh</span><br></pre></td></tr></table></figure>
+
+<p>如果只有 ssh-agent 那 ssh-server 还没有启动，需要&#x2F;etc&#x2F;init.d&#x2F;ssh start，如果看到 <strong>sshd</strong> 那说明 ssh-server 已经启动了。<br>如果没有则可以这样启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo/etc/init.d/ssh start</span><br></pre></td></tr></table></figure>
+
+<p>到这里 OpenSSH Server 就算安装好了。</p>
+<p>查看本地ip</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="4-文件拷贝"><a href="#4-文件拷贝" class="headerlink" title="4.文件拷贝"></a>4.文件拷贝</h1><p>1、把文件从本地拷贝给服务器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp 1.txt ujs@192.168.0.128:/home/Desktop</span><br></pre></td></tr></table></figure>
+
+<p>2、把文件从服务器拷贝给本地</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp ujs@192.168.0.128:/home/Desktop/2.txt ./Desktop</span><br></pre></td></tr></table></figure>
+
+<p>3、拷贝文件夹</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r test ujs@192.168.0.128:/home/Desktop</span><br><span class="line"></span><br><span class="line">scp -r ujs@192.168.0.128:/home/Desktop/test ./Desktop</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/pycharm%E6%98%A0%E5%B0%84%E6%9C%8D%E5%8A%A1%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1187,148 +1299,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/05/yolov3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="unique_Hang">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="unique_Hang's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/04/05/yolov3%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">yolov3使用方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-04-05 14:52:24" itemprop="dateCreated datePublished" datetime="2022-04-05T14:52:24+08:00">2022-04-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-06 14:25:36" itemprop="dateModified" datetime="2022-04-06T14:25:36+08:00">2022-04-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <meta name="referrer" content="no-referrer" /> 
-
-<p>Welcome to unique_Hang’s blog.</p>
-<blockquote>
-<p><strong>鲁迅说过：看unique_Hang博客的人颜值都很高！</strong><br> 作者邮箱：<a href="mailto:unique_hang@qq.com">unique_hang@qq.com</a><br>喜欢的小伙伴可以关注我的<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">b站账号</a>(<a target="_blank" rel="noopener" href="https://space.bilibili.com/290100464">https://space.bilibili.com/290100464</a>)  </p>
-</blockquote>
-<h1 id="1-用labelImg标注图片（文件夹中的exe文件）"><a href="#1-用labelImg标注图片（文件夹中的exe文件）" class="headerlink" title="1.用labelImg标注图片（文件夹中的exe文件）"></a>1.用labelImg标注图片（文件夹中的exe文件）</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">注意标注文件夹不能有中文</span><br><span class="line"></span><br><span class="line">pip install PyQt5</span><br><span class="line">pip install pyqt5-tools</span><br><span class="line">pip install lxml</span><br><span class="line">pip install labelImg</span><br><span class="line"></span><br><span class="line">终端输入labelImg打开</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li>点击Open Dir打开数据集</li>
-<li>点击Create RectBox打标签（快捷键：W）</li>
-<li>保存（选择一个文件夹，得到xml后缀文件）</li>
-<li>下一张，以此类推。（快捷键：A上一张 D下一张）</li>
-<li>标记完后把xml文件全部放在.\VOCdevkit_fire\VOC2012\Annotations文件夹下</li>
-</ol>
-<h1 id="2-生成训练集-测试集"><a href="#2-生成训练集-测试集" class="headerlink" title="2.生成训练集\测试集"></a>2.生成训练集\测试集</h1><ol>
-<li><p>运行“获取文件名字.py”，得到my_train.txt和my_val.txt。<strong>1.注意改路径，2.若文档最后有空行会报错！！</strong></p>
-</li>
-<li><p>在data文件夹中建立标签文件：xxx.names，里面存放图片标签。</p>
-</li>
-<li><p>检测tools&#x2F;voc2012.py里路径和文件名是否需要修改</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">image_list = <span class="built_in">open</span>(os.path.join(</span><br><span class="line">        FLAGS.data_dir, <span class="string">&#x27;ImageSets&#x27;</span>, <span class="string">&#x27;Main&#x27;</span>, <span class="string">&#x27;my_%s.txt&#x27;</span> % FLAGS.split)).read().splitlines()</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
-
-
-</li>
-<li><p>打开anaconda，激活yolov3-tf2-cpu，进入根目录，运行程序。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(E:\Program Files\Anaconda3) C:\Users\Administrator&gt;activate yolov3-tf2-cpu</span><br><span class="line"></span><br><span class="line">(yolov3-tf2-cpu) C:\Users\Administrator&gt;e:</span><br><span class="line"></span><br><span class="line">(yolov3-tf2-cpu) E:\&gt;cd E:\PyCharm\work\yolo_tf2.1</span><br><span class="line"></span><br><span class="line">(yolov3-tf2-cpu) E:\PyCharm\work\yolo_tf2.1&gt;</span><br><span class="line"></span><br><span class="line">--------------运行下面--------------------</span><br><span class="line">#生产训练集</span><br><span class="line">python tools/voc2012.py --data_dir ./VOCdevkit_fire/VOC2012 --split train --output_file ./data/voc2012_train.tfrecord --classes=./data/fire_voc2012.names</span><br><span class="line">#生产测试集</span><br><span class="line">python tools/voc2012.py --data_dir ./VOCdevkit_fire/VOC2012 --split val --output_file ./data/voc2012_val.tfrecord --classes=./data/fire_voc2012.names</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h1 id="3-进行迁移训练"><a href="#3-进行迁移训练" class="headerlink" title="3.进行迁移训练"></a>3.进行迁移训练</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python train.py --dataset ./data/voc2012_train.tfrecord --val_dataset ./data/voc2012_val.tfrecord --classes ./data/fire_voc2012.names --num_classes 1  --mode fit --transfer darknet --batch_size 4 --epochs 20 --weights ./checkpoints/yolov3.tf --weights_num_classes 80 </span><br></pre></td></tr></table></figure>
-
-<p>需要修改的：–dataset训练集，–val_dataset测试集，–classes标签文件，–num_classes标签种类</p>
-<p>每一个epoch会在checkpoints文件夹保存一次模型参数（yolov3_train_xx.tf）</p>
-<h1 id="4-进行模型测试"><a href="#4-进行模型测试" class="headerlink" title="4.进行模型测试"></a>4.进行模型测试</h1><ul>
-<li>图片测试</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect.py --classes ./data/fire_voc2012.names --num_classes 1 --weights ./checkpoints/yolov3_train_20.tf --image ./fire.jpg --yolo_score_threshold 0.3</span><br></pre></td></tr></table></figure>
-
-<p>需要修改的：–classes 标签文件 –num_classes 标签个数 –weights 权重文件  –image 测试图片 –yolo_score_threshold 分割阈值</p>
-<p>得到图片output.jpg</p>
-<p>查全率测试：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查看修改：weights，num_classes，判断（if nums[0] &gt; 1 or 0）</span><br><span class="line"></span><br><span class="line">python detect_all.py --yolo_score_threshold 0.3</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>视频测试</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect_video.py --classes ./data/fire_voc2012.names --num_classes 1 --weights ./checkpoints/yolov3_train_20.tf --video fire.mp4 --output ./output.avi --yolo_score_threshold 0.3</span><br></pre></td></tr></table></figure>
-
-<p>得到视频output.jpg</p>
-<ul>
-<li>摄像头测试</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python detect_video.py --classes ./data/fire_voc2012.names --num_classes 1 --weights ./checkpoints/yolov3_train_20.tf --video 0 --yolo_score_threshold 0.3</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="5-常见错误"><a href="#5-常见错误" class="headerlink" title="5.常见错误"></a>5.常见错误</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">data\xxx.names中标签错误</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;tools/voc2012.py&quot;, line 111, in &lt;module&gt;</span><br><span class="line">    app.run(main)</span><br><span class="line">  File &quot;E:\anaconda\envs\tf2\lib\site-packages\absl\app.py&quot;, line 303, in run</span><br><span class="line">    _run_main(main, args)</span><br><span class="line">  File &quot;E:\anaconda\envs\tf2\lib\site-packages\absl\app.py&quot;, line 251, in _run_main</span><br><span class="line">    sys.exit(main(argv))</span><br><span class="line">  File &quot;tools/voc2012.py&quot;, line 104, in main</span><br><span class="line">    tf_example = build_example(annotation, class_map)</span><br><span class="line">  File &quot;tools/voc2012.py&quot;, line 47, in build_example</span><br><span class="line">    classes.append(class_map[obj[&#x27;name&#x27;]])</span><br><span class="line">KeyError: &#x27;collision&#x27;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h1 id="6-进阶——数据增强"><a href="#6-进阶——数据增强" class="headerlink" title="6.进阶——数据增强"></a>6.进阶——数据增强</h1><p>.\tools\数据增强    文件夹中把需要增强的图片和xml文件分别放入JPEGImages和Annotations文件夹中。</p>
-<p>分别运行</p>
-<p>增强.py    –&gt; 修改路径</p>
-<p>即可</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1398,7 +1368,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
